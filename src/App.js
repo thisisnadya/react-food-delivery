@@ -10,8 +10,10 @@ import { useEffect } from "react";
 import "./App.css";
 import BannerName from "./components/BannerName";
 import Header from "./components/Header";
+import MenuCard from "./components/MenuCard";
 import MenuContainer from "./components/MenuContainer";
 import SubMenuContainer from "./components/SubMenuContainer";
+import { MenuItems, Items } from "./components/Data";
 
 function App() {
   useEffect(() => {
@@ -45,7 +47,18 @@ function App() {
             <div className="menuCard">
               <SubMenuContainer name={"Menu Category"} />
             </div>
-            <div className="rowContainer"></div>
+            <div className="rowContainer">
+              {MenuItems &&
+                MenuItems.map((data) => (
+                  <div key={data.id}>
+                    <MenuCard
+                      imgSrc={data.imgSrc}
+                      name={data.name}
+                      isActive={data.id === 1 ? true : false}
+                    />
+                  </div>
+                ))}
+            </div>
             <div className="dishItemContainer"></div>
           </div>
         </div>
