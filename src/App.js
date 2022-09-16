@@ -14,6 +14,7 @@ import MenuCard from "./components/MenuCard";
 import MenuContainer from "./components/MenuContainer";
 import SubMenuContainer from "./components/SubMenuContainer";
 import { MenuItems, Items } from "./components/Data";
+import ItemCard from "./components/ItemCard";
 
 function App() {
   useEffect(() => {
@@ -25,6 +26,18 @@ function App() {
     }
 
     menuLi.forEach((n) => n.addEventListener("click", setMenuActive));
+
+    // MenuCard acitve toggle
+    const menuCards = document
+      .querySelector(".rowContainer")
+      .querySelectorAll(".rowMenuCard");
+
+    function setMenuCardActive() {
+      menuCards.forEach((n) => n.classList.remove("active"));
+      this.classList.add("active");
+    }
+
+    menuCards.forEach((n) => n.addEventListener("click", setMenuCardActive));
   }, []);
   return (
     <div className="App">
@@ -59,7 +72,9 @@ function App() {
                   </div>
                 ))}
             </div>
-            <div className="dishItemContainer"></div>
+            <div className="dishItemContainer">
+              <ItemCard imgSrc={} name={} ratings={} price={} />
+            </div>
           </div>
         </div>
         <div className="rightMenu"></div>
