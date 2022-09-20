@@ -16,6 +16,7 @@ import SubMenuContainer from "./components/SubMenuContainer";
 import { MenuItems, Items } from "./components/Data";
 import ItemCard from "./components/ItemCard";
 import DebitCard from "./components/DebitCard";
+import CartItem from "./components/CartItem";
 
 function App() {
   const [isMainData, setMainData] = useState(
@@ -103,6 +104,26 @@ function App() {
             <div className="debitCard">
               <DebitCard />
             </div>
+          </div>
+          <div className="cardCheckOutContainer">
+            <SubMenuContainer name={"Carts Items"} />
+            <div className="cartContainer">
+              <div className="cartItems">
+                <CartItem
+                  name={"Burger Bristo"}
+                  imgSrc={"Img"}
+                  qty={"4"}
+                  price={"7.95"}
+                />
+              </div>
+            </div>
+            <div className="totalSection">
+              <h3>Total</h3>
+              <p>
+                <span>$ </span>45.0
+              </p>
+            </div>
+            <button className="checkOut">CheckOut</button>
           </div>
         </div>
       </main>
