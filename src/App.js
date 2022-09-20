@@ -6,7 +6,7 @@ import {
   Settings,
   SummarizeRounded,
 } from "@mui/icons-material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import BannerName from "./components/BannerName";
 import Header from "./components/Header";
@@ -15,8 +15,13 @@ import MenuContainer from "./components/MenuContainer";
 import SubMenuContainer from "./components/SubMenuContainer";
 import { MenuItems, Items } from "./components/Data";
 import ItemCard from "./components/ItemCard";
+import DebitCard from "./components/DebitCard";
 
 function App() {
+  const [isMainData, setMainData] = useState(
+    Items.filter((element) => element.itemId === "buger01")
+  );
+
   useEffect(() => {
     const menuLi = document.querySelectorAll("#menu li");
 
@@ -38,7 +43,13 @@ function App() {
     }
 
     menuCards.forEach((n) => n.addEventListener("click", setMenuCardActive));
-  }, []);
+  }, [isMainData]);
+
+  // set main dish item
+  const setData = (itemId) => {
+    setMainData(Items.filter((element) => element.itemId === itemId));
+  };
+
   return (
     <div className="App">
       {/* Header Section */}
@@ -63,7 +74,7 @@ function App() {
             <div className="rowContainer">
               {MenuItems &&
                 MenuItems.map((data) => (
-                  <div key={data.id}>
+                  <div key={data.id} onClick={() => setData(data.itemId)}>
                     <MenuCard
                       imgSrc={data.imgSrc}
                       name={data.name}
@@ -73,11 +84,27 @@ function App() {
                 ))}
             </div>
             <div className="dishItemContainer">
-              <ItemCard imgSrc={} name={} ratings={} price={} />
+              {isMainData &&
+                isMainData.map((data) => (
+                  <ItemCard
+                    key={data.id}
+                    itemId={data.id}
+                    imgSrc={data.imgSrc}
+                    name={data.name}
+                    ratings={data.ratings}
+                    price={data.price}
+                  />
+                ))}
             </div>
           </div>
         </div>
-        <div className="rightMenu"></div>
+        <div className="rightMenu">
+          <div className="debitCardContainer">
+            <div className="debitCard">
+              <DebitCard />
+            </div>
+          </div>
+        </div>
       </main>
 
       {/* Bottom Menu */}
