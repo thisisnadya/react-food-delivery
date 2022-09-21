@@ -554,7 +554,7 @@ main {
   font-size: 12px;
 }
 
-.itemContent .addCart {
+.itemContent .addToCart {
   background: #fa901c;
   width: 25px;
   height: 25px;
@@ -566,7 +566,7 @@ main {
   cursor: pointer;
 }
 
-.itemContent .addCart .MuiSvgIcon-root {
+.itemContent .addToCart .MuiSvgIcon-root {
   color: #faf9fb;
   font-size: 16px;
 }
