@@ -53,7 +53,6 @@ function App() {
   };
 
   const cartItems = useSelector((state) => state.cart);
-  console.log(cartItems);
 
   return (
     <div className="App">
@@ -119,8 +118,8 @@ function App() {
                         key={item.id}
                         name={item.name}
                         imgSrc={item.imgSrc}
-                        qty={"4"}
                         price={item.price}
+                        itemId={item.id}
                       />
                     ))
                   : "Nothing found here"}

@@ -1,10 +1,29 @@
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCartItems } from "../redux/actions/actions";
 
-function CartItem({ name, price, qty, imgSrc }) {
+function CartItem({ name, price, imgSrc, itemId }) {
+  const cart = useSelector((state) => state.cart);
+  const [qty, setQty] = useState(1);
+  const dispatch = useDispatch();
+
+  let cartItems = cart;
+  console.log(cartItems);
+  const handleQuantity = (action, id) => {
+    if (action === "add") {
+      setQty(qty + 1);
+    } else {
+      if (qty == 1) {
+        cartItems.pop(id);
+        dispatch(setCartItems(cartItems));
+      } else {
+        setQty(qty - 1);
+      }
+    }
+  };
   return (
-    <div className="cartItem">
+    <div className="cartItem" id={itemId}>
       <div className="imgBox">
         <img src={imgSrc} alt="" />
       </div>
@@ -13,8 +32,14 @@ function CartItem({ name, price, qty, imgSrc }) {
         <div className="itemQuantity">
           <span>x {qty}</span>
           <div className="quantity">
-            <RemoveRounded className="itemRemove" />
-            <AddRounded className="itemAdd" />
+            <RemoveRounded
+              className="itemRemove"
+              onClick={() => handleQuantity("remove", itemId)}
+            />
+            <AddRounded
+              className="itemAdd"
+              onClick={() => handleQuantity("add", itemId)}
+            />
           </div>
         </div>
       </div>
