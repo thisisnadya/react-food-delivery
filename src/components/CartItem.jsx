@@ -3,8 +3,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 function CartItem({ name, price, qty, imgSrc }) {
-  const cartItems = useSelector((state) => state);
-  console.log(cartItems);
   return (
     <div className="cartItem">
       <div className="imgBox">

@@ -17,6 +17,7 @@ import { MenuItems, Items } from "./components/Data";
 import ItemCard from "./components/ItemCard";
 import DebitCard from "./components/DebitCard";
 import CartItem from "./components/CartItem";
+import { useSelector } from "react-redux";
 
 function App() {
   const [isMainData, setMainData] = useState(
@@ -50,6 +51,9 @@ function App() {
   const setData = (itemId) => {
     setMainData(Items.filter((element) => element.itemId === itemId));
   };
+
+  const cartItems = useSelector((state) => state.cart);
+  console.log(cartItems);
 
   return (
     <div className="App">
@@ -109,12 +113,17 @@ function App() {
             <SubMenuContainer name={"Carts Items"} />
             <div className="cartContainer">
               <div className="cartItems">
-                <CartItem
-                  name={"Burger Bristo"}
-                  imgSrc={"Img"}
-                  qty={"4"}
-                  price={"7.95"}
-                />
+                {cartItems
+                  ? cartItems.map((item) => (
+                      <CartItem
+                        key={item.id}
+                        name={item.name}
+                        imgSrc={item.imgSrc}
+                        qty={"4"}
+                        price={item.price}
+                      />
+                    ))
+                  : "Nothing found here"}
               </div>
             </div>
             <div className="totalSection">

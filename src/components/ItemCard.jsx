@@ -1,13 +1,14 @@
 import { AddRounded, Favorite, StarRounded } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setCartItems } from "../redux/actions/actions";
 import { Items } from "./Data";
 
 function ItemCard({ imgSrc, name, ratings, price, itemId }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [currentValue, setCurrentValue] = useState(Math.floor(ratings));
   const [isCart, setCart] = useState(null);
-
-  let cartData = [];
+  const dispatch = useDispatch();
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -15,9 +16,9 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
 
   useEffect(() => {
     if (isCart) {
-      console.log(isCart);
+      dispatch(setCartItems(isCart));
     }
-  }, []);
+  }, [isCart]);
 
   return (
     <div className="itemCard" id={itemId}>
