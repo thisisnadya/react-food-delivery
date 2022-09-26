@@ -1,25 +1,18 @@
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCartItems } from "../redux/actions/actions";
+// import { useDispatch, useSelector } from "react-redux";
+// import { removeFromCart } from "../redux/actions/actions";
 
 function CartItem({ name, price, imgSrc, itemId }) {
-  const cart = useSelector((state) => state.cart);
+  // const cart = useSelector((state) => state.cart);
   const [qty, setQty] = useState(1);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  let cartItems = cart;
-  console.log(cartItems);
   const handleQuantity = (action, id) => {
     if (action === "add") {
       setQty(qty + 1);
     } else {
-      if (qty == 1) {
-        cartItems.pop(id);
-        dispatch(setCartItems(cartItems));
-      } else {
-        setQty(qty - 1);
-      }
+      setQty(qty - 1);
     }
   };
   return (

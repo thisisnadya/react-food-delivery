@@ -1,8 +1,15 @@
 import { ActionTypes } from "./types";
 
-export const setCartItems = (item) => {
+export const addToCart = (item) => {
   return {
-    type: ActionTypes.SET_CART,
+    type: ActionTypes.ADD_TO_CART,
     payload: item,
+  };
+};
+
+export const removeFromCart = (id) => {
+  return {
+    type: ActionTypes.REMOVE_FROM_CART,
+    payload: id,
   };
 };
