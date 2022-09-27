@@ -1,12 +1,13 @@
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
-import React, { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { adjustQty } from "../redux/actions/actions";
 // import { removeFromCart } from "../redux/actions/actions";
 
 function CartItem({ name, price, imgSrc, itemId }) {
-  // const cart = useSelector((state) => state.cart);
   const [qty, setQty] = useState(1);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
   const handleQuantity = (action, id) => {
     if (action === "add") {
@@ -27,11 +28,11 @@ function CartItem({ name, price, imgSrc, itemId }) {
           <div className="quantity">
             <RemoveRounded
               className="itemRemove"
-              onClick={() => handleQuantity("remove", itemId)}
+              onClick={() => dispatch(adjustQty("remove", itemId))}
             />
             <AddRounded
               className="itemAdd"
-              onClick={() => handleQuantity("add", itemId)}
+              onClick={() => dispatch(adjustQty("add", itemId))}
             />
           </div>
         </div>
