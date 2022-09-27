@@ -1,25 +1,16 @@
 import { AddRounded, Favorite, StarRounded } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/actions/actions";
-import { Items } from "./Data";
 
 function ItemCard({ imgSrc, name, ratings, price, itemId }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [currentValue, setCurrentValue] = useState(Math.floor(ratings));
-  const [isCart, setCart] = useState(null);
   const dispatch = useDispatch();
 
   const handleClick = (value) => {
     setCurrentValue(value);
   };
-
-  useEffect(() => {
-    if (isCart) {
-      console.log(isCart);
-      dispatch(addToCart(isCart));
-    }
-  }, [isCart]);
 
   return (
     <div className="itemCard" id={itemId}>
@@ -50,10 +41,7 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
               {price}
             </h3>
           </div>
-          <i
-            className="addToCart"
-            onClick={() => setCart(Items.find((n) => n.id == itemId))}
-          >
+          <i className="addToCart" onClick={() => dispatch(addToCart(itemId))}>
             <AddRounded />
           </i>
         </div>

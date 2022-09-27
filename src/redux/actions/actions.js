@@ -3,7 +3,9 @@ import { ActionTypes } from "./types";
 export const addToCart = (item) => {
   return {
     type: ActionTypes.ADD_TO_CART,
-    payload: item,
+    payload: {
+      id: item,
+    },
   };
 };
 
