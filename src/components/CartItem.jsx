@@ -5,11 +5,16 @@ import { adjustQty } from "../redux/actions/actions";
 // import { removeFromCart } from "../redux/actions/actions";
 
 function CartItem({ name, price, imgSrc, itemId }) {
-  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const item = cart.find((item) => item.id === itemId);
+  const [qty, setQty] = useState(item.qty);
 
-  const handleQuantity = (action, id) => {
+  useEffect(() => {
+    setQty(item.qty);
+  }, [item.qty]);
+
+  const handleQuantity = (action) => {
     if (action === "add") {
       setQty(qty + 1);
     } else {
@@ -28,11 +33,11 @@ function CartItem({ name, price, imgSrc, itemId }) {
           <div className="quantity">
             <RemoveRounded
               className="itemRemove"
-              onClick={() => dispatch(adjustQty("remove", itemId))}
+              onClick={() => handleQuantity("remove")}
             />
             <AddRounded
               className="itemAdd"
-              onClick={() => dispatch(adjustQty("add", itemId))}
+              onClick={() => handleQuantity("add")}
             />
           </div>
         </div>

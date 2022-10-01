@@ -21,6 +21,18 @@ const cartReducer = (state = initialState, action) => {
             )
           : [...state.cart, { ...item, qty: 1 }],
       };
+    case ActionTypes.ADJUST_QTY:
+      // const itemToUpdateQty = Items.find(
+      //   (item) => item.id === action.payload.itemId
+      // );
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, qty: action.payload.itemQty }
+            : item
+        ),
+      };
     // case ActionTypes.REMOVE_FROM_CART:
     //   return {
     //     ...state,

@@ -16,12 +16,12 @@ export const removeFromCart = (id) => {
   };
 };
 
-export const adjustQty = (action, id) => {
+export const adjustQty = (id, qty) => {
   return {
     type: ActionTypes.ADJUST_QTY,
     payload: {
-      act: action,
-      id: id,
+      itemId: id,
+      itemQty: qty,
     },
   };
 };
