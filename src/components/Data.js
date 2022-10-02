@@ -1,3 +1,12 @@
+import {
+  AccountBalanceWalletRounded,
+  Chat,
+  Favorite,
+  HomeRounded,
+  Settings,
+  SummarizeRounded,
+} from "@mui/icons-material";
+
 const MenuItems = [
   {
     id: 1,
@@ -695,4 +704,43 @@ const Items = [
   },
 ];
 
-export { MenuItems, Items };
+const BottomMenuData = [
+  {
+    name: "Home",
+    link: "/",
+    icon: <HomeRounded />,
+    isHome: true,
+  },
+  {
+    name: "Chat",
+    link: "/chat",
+    icon: <Chat />,
+    isHome: false,
+  },
+  {
+    name: "Wallet",
+    link: "/wallet",
+    icon: <AccountBalanceWalletRounded />,
+    isHome: false,
+  },
+  {
+    name: "Favorite",
+    link: "/favorite",
+    icon: <Favorite />,
+    isHome: false,
+  },
+  {
+    name: "Summarize",
+    link: "/summarize",
+    icon: <SummarizeRounded />,
+    isHome: false,
+  },
+  {
+    name: "Settings",
+    link: "/settings",
+    icon: <Settings />,
+    isHome: false,
+  },
+];
+
+export { MenuItems, Items, BottomMenuData };

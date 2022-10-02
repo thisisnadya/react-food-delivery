@@ -3,6 +3,8 @@ import "./App.css";
 import { Items } from "./components/Data";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
+import Chat from "./pages/Chat";
+import Favorites from "./pages/Favorites";
 
 function App() {
   const [isMainData, setMainData] = useState(
@@ -35,6 +37,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/favorite" element={<Favorites />} />
       </Routes>
     </div>
   );

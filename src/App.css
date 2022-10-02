@@ -167,7 +167,7 @@ header {
   font-weight: 500;
 }
 
-.bottomMenu ul li a .icon {
+.bottomMenu ul li .icon {
   position: relative;
   display: block;
   line-height: 70px;
@@ -175,16 +175,16 @@ header {
   transition: 0.5s;
 }
 
-.bottomMenu ul li a .icon .MuiSvgIcon-root {
+.bottomMenu ul li .icon .MuiSvgIcon-root {
   font-size: 26px;
   color: #373848;
 }
 
-.bottomMenu ul li.active a .icon {
+.bottomMenu ul li.active .icon {
   transform: translateY(-26px);
 }
 
-.bottomMenu ul li.active a .icon .MuiSvgIcon-root {
+.bottomMenu ul li.active .icon .MuiSvgIcon-root {
   color: #faf9fb;
   transition: 0.5s;
 }

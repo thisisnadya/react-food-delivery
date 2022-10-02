@@ -1,30 +1,18 @@
 import React from "react";
+import { BottomMenuData } from "./Data";
 import MenuContainer from "./MenuContainer";
-import {
-  AccountBalanceWalletRounded,
-  Chat,
-  Favorite,
-  HomeRounded,
-  Settings,
-  SummarizeRounded,
-} from "@mui/icons-material";
+
+import { Link } from "react-router-dom";
 
 function BottomMenu() {
   return (
     <div className="bottomMenu">
       <ul id="menu">
-        {/* prettier-ignore */}
-        <MenuContainer link={'#'} icon={<HomeRounded/>} isHome/>
-        {/* prettier-ignore */}
-        <MenuContainer link={'#'} icon={<Chat/>}/>
-        {/* prettier-ignore */}
-        <MenuContainer link={'#'} icon={<AccountBalanceWalletRounded/>}/>
-        {/* prettier-ignore */}
-        <MenuContainer link={'#'} icon={<Favorite/>}/>
-        {/* prettier-ignore */}
-        <MenuContainer link={'#'} icon={<SummarizeRounded/>}/>
-        {/* prettier-ignore */}
-        <MenuContainer link={'#'} icon={<Settings/>}/>
+        {BottomMenuData.map((menu) => (
+          <Link to={menu.link} key={menu.name}>
+            <MenuContainer icon={menu.icon} isHome={menu.isHome} />
+          </Link>
+        ))}
         <div className="indicator"></div>
       </ul>
     </div>
