@@ -25,3 +25,12 @@ export const adjustQty = (id, qty) => {
     },
   };
 };
+
+export const addToFavorite = (id) => {
+  return {
+    type: ActionTypes.ADD_TO_FAVORITE,
+    payload: {
+      item: id,
+    },
+  };
+};

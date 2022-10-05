@@ -6,7 +6,7 @@ const initialState = {
   total: null,
 };
 
-const cartReducer = (state = initialState, action) => {
+export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_TO_CART:
       const item = Items.find((item) => item.id === action.payload.id);
@@ -43,4 +43,6 @@ const cartReducer = (state = initialState, action) => {
   }
 };
 
-export default cartReducer;
+export const favoriteReducer = (state = [], action) => {
+  return state;
+};

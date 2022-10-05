@@ -1,5 +1,4 @@
 import React from "react";
-import {} from "@mui/material";
 import {
   BarChart,
   SearchRounded,
@@ -31,9 +30,7 @@ function Header() {
       </div>
       <div className="shoppingCart">
         <ShoppingCartRounded className="cart" />
-        <div className="cart_content">
-          <p>{state.length}</p>
-        </div>
+        <div className="cart_content">{/* <p>{state.length}</p> */}</div>
       </div>
       <div className="profileContainer">
         <div className="imgBox">
