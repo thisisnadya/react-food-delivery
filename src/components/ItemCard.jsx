@@ -1,12 +1,17 @@
 import { AddRounded, Favorite, StarRounded } from "@mui/icons-material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/actions/actions";
+import { addToCart, addToFavorite } from "../redux/actions/actions";
 
 function ItemCard({ imgSrc, name, ratings, price, itemId }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [currentValue, setCurrentValue] = useState(Math.floor(ratings));
   const dispatch = useDispatch();
+
+  const handleFavourite = (id) => {
+    setIsFavourite(!isFavourite);
+    dispatch(addToFavorite(id));
+  };
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -16,7 +21,7 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
     <div className="itemCard" id={itemId}>
       <div
         className={`isfavourite ${isFavourite ? "active" : ""}`}
-        onClick={() => setIsFavourite(!isFavourite)}
+        onClick={() => handleFavourite(itemId)}
       >
         <Favorite />
       </div>

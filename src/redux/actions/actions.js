@@ -30,7 +30,16 @@ export const addToFavorite = (id) => {
   return {
     type: ActionTypes.ADD_TO_FAVORITE,
     payload: {
-      item: id,
+      itemId: id,
+    },
+  };
+};
+
+export const removeFromFavorite = (id) => {
+  return {
+    type: ActionTypes.REMOVE_FROM_FAVORITE,
+    payload: {
+      itemId: id,
     },
   };
 };

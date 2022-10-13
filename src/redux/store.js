@@ -2,7 +2,7 @@ import { cartReducer, favoriteReducer } from "./reducers/reducer";
 import { createStore, combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-  allReducer: cartReducer,
+  carts: cartReducer,
   favorites: favoriteReducer,
 });
 

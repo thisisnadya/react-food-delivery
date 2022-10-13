@@ -44,5 +44,20 @@ export const cartReducer = (state = initialState, action) => {
 };
 
 export const favoriteReducer = (state = [], action) => {
-  return state;
+  switch (action.type) {
+    case ActionTypes.ADD_TO_FAVORITE:
+      let findItem = Items.find((item) => item.id === action.payload.itemId);
+      if (findItem) {
+        return [...state, findItem];
+      } else {
+        return state;
+      }
+    case ActionTypes.REMOVE_FROM_FAVORITE:
+      let itemsFavorite = state.filter(
+        (item) => item.id !== action.payload.itemId
+      );
+      return itemsFavorite;
+    default:
+      return state;
+  }
 };
