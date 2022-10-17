@@ -6,7 +6,7 @@ import { adjustQty } from "../redux/actions/actions";
 
 function CartItem({ name, price, imgSrc, itemId }) {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.carts.cart);
   const item = cart.find((item) => item.id === itemId);
   const [qty, setQty] = useState(item.qty);
 

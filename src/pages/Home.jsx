@@ -18,7 +18,7 @@ function Home() {
     setMainData(Items.filter((element) => element.itemId === itemId));
   };
 
-  const cartItems = useSelector((state) => state.cart);
+  const cartItems = useSelector((state) => state.carts.cart);
   return (
     <div>
       <Header />
