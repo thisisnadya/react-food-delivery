@@ -26,18 +26,9 @@ export const adjustQty = (id, qty) => {
   };
 };
 
-export const addToFavorite = (id) => {
+export const handleFavourite = (id) => {
   return {
-    type: ActionTypes.ADD_TO_FAVORITE,
-    payload: {
-      itemId: id,
-    },
-  };
-};
-
-export const removeFromFavorite = (id) => {
-  return {
-    type: ActionTypes.REMOVE_FROM_FAVORITE,
+    type: ActionTypes.HANDLE_FAVORITE,
     payload: {
       itemId: id,
     },
