@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import BannerName from "../components/BannerName";
 import SubMenuContainer from "../components/SubMenuContainer";
@@ -14,6 +14,29 @@ function Home() {
   const [isMainData, setMainData] = useState(
     Items.filter((element) => element.itemId === "buger01")
   );
+  useEffect(() => {
+    const menuLi = document.querySelectorAll("#menu li");
+
+    function setMenuActive() {
+      menuLi.forEach((n) => n.classList.remove("active"));
+      this.classList.add("active");
+    }
+
+    menuLi.forEach((n) => n.addEventListener("click", setMenuActive));
+
+    // MenuCard acitve toggle
+    const menuCards = document
+      .querySelector(".rowContainer")
+      .querySelectorAll(".rowMenuCard");
+
+    function setMenuCardActive() {
+      menuCards.forEach((n) => n.classList.remove("active"));
+      this.classList.add("active");
+    }
+
+    menuCards.forEach((n) => n.addEventListener("click", setMenuCardActive));
+  }, [isMainData]);
+
   const setData = (itemId) => {
     setMainData(Items.filter((element) => element.itemId === itemId));
   };

@@ -856,6 +856,28 @@ main {
   letter-spacing: 2px;
 }
 
+.new-section {
+  height: 100vh;
+}
+
+.form {
+  width: 40%;
+  height: 350px;
+  padding: 50px;
+  color: #2a2b3c;
+}
+
+.btn-custom {
+  background-color: #f8901c;
+  color: #faf9fb;
+  font-weight: bold;
+}
+.btn-custom:hover {
+  background-color: #faf9fb;
+  border: 1px solid #f8901c;
+  color: #f8901c;
+}
+
 @media screen and (min-width: 650px) {
   .rowContainer {
     justify-content: space-between;

@@ -5,10 +5,8 @@ import {
   ShoppingCartRounded,
 } from "@mui/icons-material";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 
 function Header() {
-  const state = useSelector((state) => state.cart);
   useEffect(() => {
     const toggleIcon = document.querySelector(".toggleMenu");
 

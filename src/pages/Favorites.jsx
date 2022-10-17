@@ -2,11 +2,11 @@ import React from "react";
 import BottomMenu from "../components/BottomMenu";
 import Header from "../components/Header";
 
-function Chat() {
+function Favorites() {
   return (
     <div>
       <Header />
-      <div className="favorites">
+      <div className="new-section">
         <p>Favorites</p>
       </div>
       <BottomMenu />
@@ -14,4 +14,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Favorites;
