@@ -878,6 +878,14 @@ main {
   color: #f8901c;
 }
 
+.btn-navigate {
+  color: #fa901c;
+}
+
+.btn-navigate:hover {
+  color: #787a84;
+}
+
 @media screen and (min-width: 650px) {
   .rowContainer {
     justify-content: space-between;
