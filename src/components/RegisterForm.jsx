@@ -9,14 +9,33 @@ function RegisterForm() {
   return (
     <form className="form">
       <div className="mb-3">
-        <input type="email" placeholder="Email" className="form-control" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          className="form-control"
+        />
       </div>
       <div className="mb-3">
-        <input type="text" placeholder="Name" className="form-control" />
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          className="form-control"
+        />
       </div>
       <div className="mb-3">
         <input
           type="password"
+          name="password"
+          placeholder="Password"
+          className="form-control"
+        />
+      </div>
+      <div className="mb-3">
+        <input
+          type="password"
+          name="passwordCheck"
           placeholder="Password"
           className="form-control"
         />
