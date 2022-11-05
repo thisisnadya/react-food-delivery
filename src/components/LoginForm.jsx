@@ -1,21 +1,29 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function LoginForm() {
+function LoginForm(props) {
   const navigate = useNavigate();
   const register = () => {
     navigate("/register");
   };
 
+  let { handleSubmit, setEmail, setPassword } = props.loginState;
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <div className="mb-3">
-        <input type="email" placeholder="Email" className="form-control" />
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+          className="form-control"
+        />
       </div>
       <div className="mb-3">
         <input
           type="password"
           placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
           className="form-control"
         />
       </div>
