@@ -72,6 +72,29 @@ export const userReducer = (state = userInitialState, action) => {
         ...state,
         isLoggedIn: false,
       };
+    case ActionTypes.REGISTER_FAIL:
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
+    case ActionTypes.LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: true,
+        user: action.payload.user,
+      };
+    case ActionTypes.LOGIN_FAIL:
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: null,
+      };
+    case ActionTypes.LOGOUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: null,
+      };
     default:
       return state;
   }

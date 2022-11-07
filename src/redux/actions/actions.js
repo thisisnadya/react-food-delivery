@@ -34,3 +34,10 @@ export const handleFavourite = (id) => {
     },
   };
 };
+
+export const registerSuccess = (payload) => {
+  return {
+    type: ActionTypes.REGISTER_SUCCESS,
+    payload,
+  };
+};
