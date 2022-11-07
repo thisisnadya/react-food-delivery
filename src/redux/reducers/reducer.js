@@ -1,12 +1,17 @@
 import { ActionTypes } from "../actions/types";
 import { Items } from "../../components/Data";
 
-const initialState = {
+const cartInitialState = {
   cart: [],
   total: null,
 };
 
-export const cartReducer = (state = initialState, action) => {
+const userInitialState = {
+  isLoggedIn: false,
+  user: null,
+};
+
+export const cartReducer = (state = cartInitialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_TO_CART:
       const item = Items.find((item) => item.id === action.payload.id);
@@ -55,6 +60,18 @@ export const favoriteReducer = (state = [], action) => {
       } else {
         return [...state, findItem];
       }
+    default:
+      return state;
+  }
+};
+
+export const userReducer = (state = userInitialState, action) => {
+  switch (action.type) {
+    case ActionTypes.REGISTER_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
     default:
       return state;
   }
