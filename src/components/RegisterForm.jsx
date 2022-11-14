@@ -7,7 +7,7 @@ function RegisterForm(props) {
     navigate("/login");
   };
 
-  let { handleSubmit, setEmail, setUsername, setPassword, setCheckPassword } =
+  let { handleSubmit, setEmail, setUsername, setPassword, setPasswordCheck } =
     props.registerState;
 
   return (
@@ -44,7 +44,7 @@ function RegisterForm(props) {
           type="password"
           name="passwordCheck"
           placeholder="Confirm Password"
-          onChange={(e) => setCheckPassword(e.target.value)}
+          onChange={(e) => setPasswordCheck(e.target.value)}
           className="form-control"
         />
       </div>

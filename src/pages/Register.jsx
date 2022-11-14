@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import RegisterForm from "../components/RegisterForm";
 import Header from "../components/Header";
 import { useDispatch, useStore } from "react-redux";
-import { registerSuccess } from "../redux/actions/actions";
+import { registerAction } from "../redux/actions/actions";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [checkPassword, setCheckPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
   const store = useStore();
   const dispatch = useDispatch();
 
@@ -19,9 +19,14 @@ function Register() {
       email,
       username,
       password,
-      checkPassword,
+      passwordCheck,
     };
-    console.log(dispatch(registerSuccess("register action")));
+    const validate = dispatch(registerAction(newUser));
+    validate
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
     // console.log(store.getState());
   };
 
@@ -30,7 +35,7 @@ function Register() {
     setEmail,
     setUsername,
     setPassword,
-    setCheckPassword,
+    setPasswordCheck,
   };
 
   return (

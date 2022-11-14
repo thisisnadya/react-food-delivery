@@ -36,8 +36,10 @@ export const handleFavourite = (id) => {
   };
 };
 
-export const registerSuccess = (payload) => (dispatch) => {
-  AuthServices.register(payload)
+// register action
+
+export const registerAction = (payload) => (dispatch) => {
+  return AuthServices.register(payload)
     .then((response) => {
       dispatch({
         type: ActionTypes.REGISTER_SUCCESS,
@@ -50,6 +52,27 @@ export const registerSuccess = (payload) => (dispatch) => {
       dispatch({
         type: ActionTypes.REGISTER_FAIL,
         payload: { err: error.message || "Registration Failed" },
+      });
+      return Promise.reject(error);
+    });
+};
+
+// login action
+
+export const loginAction = (payload) => (dispatch) => {
+  return AuthServices.login(payload)
+    .then((response) => {
+      dispatch({
+        type: ActionTypes.LOGIN_SUCCESS,
+        payload: response.data,
+      });
+      return Promise.resolve(response.data);
+    })
+
+    .catch((error) => {
+      dispatch({
+        type: ActionTypes.LOGIN_FAIL,
+        payload: { err: error.message || "Login Failed" },
       });
       return Promise.reject(error);
     });
