@@ -9,8 +9,12 @@ import CartItem from "../components/CartItem";
 import MenuCard from "../components/MenuCard";
 import Header from "../components/Header";
 import BottomMenu from "../components/BottomMenu";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.isLoggedIn);
+
   const [isMainData, setMainData] = useState(
     Items.filter((element) => element.itemId === "buger01")
   );
@@ -35,6 +39,11 @@ function Home() {
     }
 
     menuCards.forEach((n) => n.addEventListener("click", setMenuCardActive));
+
+    // check authorized user
+    if (!user) {
+      navigate("/login");
+    }
   }, [isMainData]);
 
   const setData = (itemId) => {

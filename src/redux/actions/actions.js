@@ -61,12 +61,13 @@ export const registerAction = (payload) => (dispatch) => {
 
 export const loginAction = (payload) => (dispatch) => {
   return AuthServices.login(payload)
-    .then((response) => {
+    .then((data) => {
       dispatch({
         type: ActionTypes.LOGIN_SUCCESS,
-        payload: response.data,
+        payload: data,
       });
-      return Promise.resolve(response.data);
+      console.log(data);
+      return Promise.resolve(data);
     })
 
     .catch((error) => {

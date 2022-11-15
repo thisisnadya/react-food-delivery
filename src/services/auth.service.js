@@ -5,8 +5,8 @@ export const register = (newUser) => {
   return axios
     .post(`${baseURL}/register`, newUser)
     .then((response) => {
-      if (response.data) {
-        return Promise.resolve(response.data);
+      if (response) {
+        return Promise.resolve(response);
       }
     })
     .catch((error) => {
@@ -18,9 +18,10 @@ export const login = (userCredential) => {
   return axios
     .post(`${baseURL}/login`, userCredential)
     .then((response) => {
-      if (response.data) {
-        return Promise.resolve(response.data);
+      if (response.data.token) {
+        localStorage.setItem("x-access-token", response.data.token);
       }
+      return Promise.resolve(response.data);
     })
     .catch((error) => {
       return Promise.reject(error.response.data);
