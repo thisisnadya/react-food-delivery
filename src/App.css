@@ -93,6 +93,7 @@ header {
 .profileContainer {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .profileContainer .imgBox {
@@ -117,7 +118,6 @@ header {
   font-size: 16px;
   margin-left: 8px;
   font-weight: 500;
-  display: none;
 }
 
 .toggleMenu {
@@ -884,6 +884,9 @@ main {
 
 .btn-navigate:hover {
   color: #787a84;
+}
+.btn-logout {
+  cursor: pointer;
 }
 
 @media screen and (min-width: 650px) {

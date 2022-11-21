@@ -1,4 +1,5 @@
 import React from "react";
+import Logout from "./Logout";
 import {
   BarChart,
   SearchRounded,
@@ -38,7 +39,10 @@ function Header() {
             alt=""
           />
         </div>
-        <h2 className="username">Nadya Mumtazah</h2>
+        <h2 className="username me-2">Nadya Mumtazah</h2>
+        <div className="btn-logout ms-2">
+          <Logout />
+        </div>
       </div>
       <div className="toggleMenu">
         <BarChart className="toggleIcon" />
