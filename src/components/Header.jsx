@@ -1,5 +1,7 @@
 import React from "react";
 import Logout from "./Logout";
+import { logoutAction } from "../redux/actions/actions";
+import { useDispatch, useStore } from "react-redux";
 import {
   BarChart,
   SearchRounded,
@@ -8,6 +10,11 @@ import {
 import { useEffect } from "react";
 
 function Header() {
+  const dispatch = useDispatch();
+  const store = useStore();
+
+  const currentUser = store.getState().user.user;
+
   useEffect(() => {
     const toggleIcon = document.querySelector(".toggleMenu");
 
@@ -15,6 +22,10 @@ function Header() {
       document.querySelector(".rightMenu").classList.toggle("active");
     });
   }, []);
+
+  const logout = () => {
+    dispatch(logoutAction());
+  };
 
   return (
     <header>
@@ -39,9 +50,9 @@ function Header() {
             alt=""
           />
         </div>
-        <h2 className="username me-2">Nadya Mumtazah</h2>
+        <h2 className="username me-2">{currentUser}</h2>
         <div className="btn-logout ms-2">
-          <Logout />
+          <Logout onLogout={logout} />
         </div>
       </div>
       <div className="toggleMenu">

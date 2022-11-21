@@ -78,3 +78,15 @@ export const loginAction = (payload) => (dispatch) => {
       return Promise.reject(error);
     });
 };
+
+// logout action
+export const logoutAction = () => (dispatch) => {
+  const msg = AuthServices.logout();
+
+  dispatch({
+    type: ActionTypes.LOGOUT,
+    payload: { msg },
+  });
+
+  return Promise.resolve(msg);
+};

@@ -27,3 +27,8 @@ export const login = (userCredential) => {
       return Promise.reject(error.response.data);
     });
 };
+
+export const logout = () => {
+  localStorage.removeItem("x-access-token");
+  return { msg: "Logout Successfully" };
+};
