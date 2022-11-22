@@ -9,47 +9,25 @@ import CartItem from "../components/CartItem";
 import MenuCard from "../components/MenuCard";
 import Header from "../components/Header";
 import BottomMenu from "../components/BottomMenu";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 function Home() {
-  const navigate = useNavigate();
-  const user = useSelector((state) => state.user.isLoggedIn);
   const currentUser = useSelector((state) => state.user.user);
+  const [homeMenus, setHomeMenus] = useState([]);
+
+  const getMenus = () => {
+    fetch("https://ig-food-menus.herokuapp.com/our-foods/1")
+      .then((response) => response.json())
+      .then((data) => setHomeMenus(data));
+    console.log(homeMenus);
+  };
 
   const [isMainData, setMainData] = useState(
     Items.filter((element) => element.itemId === "buger01")
   );
   useEffect(() => {
-    const menuLi = document.querySelectorAll("#menu li");
-
-    function setMenuActive() {
-      menuLi.forEach((n) => n.classList.remove("active"));
-      this.classList.add("active");
-    }
-
-    menuLi.forEach((n) => n.addEventListener("click", setMenuActive));
-
-    // MenuCard acitve toggle
-    const menuCards = document
-      .querySelector(".rowContainer")
-      .querySelectorAll(".rowMenuCard");
-
-    function setMenuCardActive() {
-      menuCards.forEach((n) => n.classList.remove("active"));
-      this.classList.add("active");
-    }
-
-    menuCards.forEach((n) => n.addEventListener("click", setMenuCardActive));
-
-    // check authorized user
-    if (!user) {
-      navigate("/login");
-    }
-  }, [isMainData]);
-
-  const setData = (itemId) => {
-    setMainData(Items.filter((element) => element.itemId === itemId));
-  };
+    getMenus();
+  }, []);
 
   const cartItems = useSelector((state) => state.carts.cart);
   return (
@@ -71,16 +49,11 @@ function Home() {
               <SubMenuContainer name={"Menu Category"} />
             </div>
             <div className="rowContainer">
-              {MenuItems &&
-                MenuItems.map((data) => (
-                  <div key={data.id} onClick={() => setData(data.itemId)}>
-                    <MenuCard
-                      imgSrc={data.imgSrc}
-                      name={data.name}
-                      isActive={data.id === 1 ? true : false}
-                    />
-                  </div>
-                ))}
+              {MenuItems.map((item) => (
+                <NavLink to="#" key={item.id}>
+                  <MenuCard imgSrc={item.imgSrc} name={item.name} />
+                </NavLink>
+              ))}
             </div>
             <div className="dishItemContainer">
               {isMainData &&
