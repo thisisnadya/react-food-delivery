@@ -10,21 +10,32 @@ import MenuCard from "../components/MenuCard";
 import Header from "../components/Header";
 import BottomMenu from "../components/BottomMenu";
 import { useNavigate, NavLink } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
   const [homeMenus, setHomeMenus] = useState([]);
+  const [categoryMenus, setCategoryMenus] = useState([]);
 
-  const getMenus = () => {
-    fetch("https://ig-food-menus.herokuapp.com/our-foods/1")
-      .then((response) => response.json())
-      .then((data) => setHomeMenus(data));
-    console.log(homeMenus);
+  const getMenus = async () => {
+    let check = localStorage.getItem("all_menu");
+
+    if (check) {
+      setHomeMenus(JSON.parse(check));
+    } else {
+      await fetch(`https://ig-food-menus.herokuapp.com/our-foods`)
+        .then((response) => response.json)
+        .then((data) => setHomeMenus(data));
+      localStorage.setItem("all_menu", JSON.stringify(homeMenus));
+    }
   };
 
-  const [isMainData, setMainData] = useState(
-    Items.filter((element) => element.itemId === "buger01")
-  );
+  const getCategoryMenus = async (category) => {
+    await fetch(`https://ig-food-menus.herokuapp.com/${category}`)
+      .then((response) => response.json)
+      .then((data) => console.log(data));
+  };
+
   useEffect(() => {
     getMenus();
   }, []);
@@ -56,17 +67,16 @@ function Home() {
               ))}
             </div>
             <div className="dishItemContainer">
-              {isMainData &&
-                isMainData.map((data) => (
-                  <ItemCard
-                    key={data.id}
-                    itemId={data.id}
-                    imgSrc={data.imgSrc}
-                    name={data.name}
-                    ratings={data.ratings}
-                    price={data.price}
-                  />
-                ))}
+              {homeMenus.map((item) => (
+                <ItemCard
+                  key={item.id}
+                  imgSrc={item.img}
+                  name={item.name}
+                  ratings={item.rate}
+                  price={item.price}
+                  itemId={item.id}
+                />
+              ))}
             </div>
           </div>
         </div>
