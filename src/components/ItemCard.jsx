@@ -17,6 +17,13 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
     setCurrentValue(value);
   };
 
+  const data = {
+    id: itemId,
+    img: imgSrc,
+    name,
+    price,
+  };
+
   return (
     <div className="itemCard" id={itemId}>
       <div
@@ -46,7 +53,7 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
               {price}
             </h3>
           </div>
-          <i className="addToCart" onClick={() => dispatch(addToCart(itemId))}>
+          <i className="addToCart" onClick={() => dispatch(addToCart(data))}>
             <AddRounded />
           </i>
         </div>

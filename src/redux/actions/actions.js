@@ -1,12 +1,10 @@
 import { ActionTypes } from "./types";
 import * as AuthServices from "../../services/auth.service";
 
-export const addToCart = (item) => {
+export const addToCart = (data) => {
   return {
     type: ActionTypes.ADD_TO_CART,
-    payload: {
-      id: item,
-    },
+    payload: data,
   };
 };
 

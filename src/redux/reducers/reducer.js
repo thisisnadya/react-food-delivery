@@ -14,17 +14,11 @@ const userInitialState = {
 export const cartReducer = (state = cartInitialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_TO_CART:
-      const item = Items.find((item) => item.id === action.payload.id);
       const isInCart = state.cart.find((item) => item.id === action.payload.id);
+      console.log(isInCart);
       return {
         ...state,
-        cart: isInCart
-          ? state.cart.map((item) =>
-              item.id === action.payload.id
-                ? { ...item, qty: item.qty + 1 }
-                : item
-            )
-          : [...state.cart, { ...item, qty: 1 }],
+        cart: [...state.cart, action.payload],
       };
     case ActionTypes.ADJUST_QTY:
       // const itemToUpdateQty = Items.find(

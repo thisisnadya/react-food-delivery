@@ -10,24 +10,25 @@ import MenuCard from "../components/MenuCard";
 import Header from "../components/Header";
 import BottomMenu from "../components/BottomMenu";
 import { useNavigate, NavLink } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
+import axios from "axios";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
   const [homeMenus, setHomeMenus] = useState([]);
   const [categoryMenus, setCategoryMenus] = useState([]);
 
-  const getMenus = async () => {
-    let check = localStorage.getItem("all_menu");
+  const itemsPerPage = 50;
 
-    if (check) {
-      setHomeMenus(JSON.parse(check));
-    } else {
-      await fetch(`https://ig-food-menus.herokuapp.com/our-foods`)
-        .then((response) => response.json)
-        .then((data) => setHomeMenus(data));
-      localStorage.setItem("all_menu", JSON.stringify(homeMenus));
-    }
+  const getMenus = () => {
+    axios
+      .get("https://ig-food-menus.herokuapp.com/our-foods")
+      .then(({ data }) => {
+        let menuItems = [];
+        for (let i = 0; i < itemsPerPage; i++) {
+          menuItems.push(data[i]);
+        }
+        setHomeMenus(menuItems);
+      });
   };
 
   const getCategoryMenus = async (category) => {
@@ -90,7 +91,8 @@ function Home() {
             <SubMenuContainer name={"Carts Items"} />
             <div className="cartContainer">
               <div className="cartItems">
-                {cartItems
+                <p>Your cart is empty</p>
+                {/* {cartItems
                   ? cartItems.map((item) => (
                       <CartItem
                         key={item.id}
@@ -100,7 +102,7 @@ function Home() {
                         itemId={item.id}
                       />
                     ))
-                  : "Nothing found here"}
+                  : "Nothing found here"} */}
               </div>
             </div>
             <div className="totalSection">
