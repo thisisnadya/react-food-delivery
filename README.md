@@ -9,10 +9,20 @@
 :exclamation: fix cart reducer
 <br> 
 - remove from cart
+- pricing
+- cart count
+- total 
 <br>
 :exclamation: add infinite scroll
 <br>
 :exclamation: protected route
 <br>
+:exclamation: add category page
+<br>
+- still error in some pages
+<br>
+:exclamation: 404 page
+<br>
+:exclamation: user setting
 
 
