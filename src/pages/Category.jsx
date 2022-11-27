@@ -9,32 +9,34 @@ import CartItem from "../components/CartItem";
 import MenuCard from "../components/MenuCard";
 import Header from "../components/Header";
 import BottomMenu from "../components/BottomMenu";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
-  const [homeMenus, setHomeMenus] = useState([]);
+  const [categoryMenus, setCategoryMenus] = useState([]);
+  const params = useParams();
+  const cartItems = useSelector((state) => state.carts.cart);
 
   const itemsPerPage = 50;
 
-  const getMenus = () => {
-    axios
-      .get("https://ig-food-menus.herokuapp.com/our-foods")
+  const getCategoryMenus = async (category) => {
+    await axios
+      .get(`https://ig-food-menus.herokuapp.com/${category}`)
       .then(({ data }) => {
         let menuItems = [];
         for (let i = 0; i < itemsPerPage; i++) {
           menuItems.push(data[i]);
         }
-        setHomeMenus(menuItems);
+        setCategoryMenus(menuItems);
       });
   };
 
   useEffect(() => {
-    getMenus();
-  }, []);
+    getCategoryMenus(params.category);
+    console.log(categoryMenus);
+  }, [params.category]);
 
-  const cartItems = useSelector((state) => state.carts.cart);
   return (
     <div>
       <Header />
@@ -64,7 +66,7 @@ function Home() {
               ))}
             </div>
             <div className="dishItemContainer">
-              {homeMenus.map((item) => (
+              {categoryMenus.map((item) => (
                 <ItemCard
                   key={item.id}
                   imgSrc={item.img}

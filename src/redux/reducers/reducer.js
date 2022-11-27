@@ -29,7 +29,7 @@ export const cartReducer = (state = cartInitialState, action) => {
       return {
         ...state,
         cart:
-          action.payload.adjustType == "INCREMENT"
+          action.payload.adjustType === "INCREMENT"
             ? state.cart.map((item) =>
                 item.id == action.payload.id
                   ? { ...item, qty: item.qty + 1 }

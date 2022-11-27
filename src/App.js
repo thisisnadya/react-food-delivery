@@ -5,6 +5,7 @@ import Chat from "./pages/Chat";
 import Favorites from "./pages/Favorites";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Category from "./pages/Category";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/favorite" element={<Favorites />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/category/:category/" element={<Category />} />
       </Routes>
     </div>
   );
