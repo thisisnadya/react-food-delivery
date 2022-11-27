@@ -9,6 +9,7 @@
 :exclamation: fix cart reducer
 <br> 
 - remove from cart
+<br>
 :exclamation: add infinite scroll
 <br>
 :exclamation: protected route
