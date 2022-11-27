@@ -1,6 +1,6 @@
 ## Todo:
 
-:white_check_mark: ui (Design from <a href='https://www.youtube.com/watch?v=CjGEuLgt4nw'>Vetrieval Ravi</a>
+:white_check_mark: ui (Design from <a href='https://www.youtube.com/watch?v=CjGEuLgt4nw'>Vetrieval Ravi</a>)
 <br>
 :white_check_mark: fetch api (https://ig-food-menus.herokuapp.com/our-foods/)
 <br>
