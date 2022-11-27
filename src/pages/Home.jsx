@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import BannerName from "../components/BannerName";
 import SubMenuContainer from "../components/SubMenuContainer";
-import { MenuItems, Items } from "../components/Data";
+import { MenuItems } from "../components/Data";
 import ItemCard from "../components/ItemCard";
 import DebitCard from "../components/DebitCard";
 import CartItem from "../components/CartItem";
@@ -91,18 +91,17 @@ function Home() {
             <SubMenuContainer name={"Carts Items"} />
             <div className="cartContainer">
               <div className="cartItems">
-                <p>Your cart is empty</p>
-                {/* {cartItems
+                {cartItems
                   ? cartItems.map((item) => (
                       <CartItem
                         key={item.id}
                         name={item.name}
-                        imgSrc={item.imgSrc}
+                        imgSrc={item.img}
                         price={item.price}
                         itemId={item.id}
                       />
                     ))
-                  : "Nothing found here"} */}
+                  : "Nothing found here"}
               </div>
             </div>
             <div className="totalSection">

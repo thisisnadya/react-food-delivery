@@ -14,13 +14,6 @@ function CartItem({ name, price, imgSrc, itemId }) {
     setQty(item.qty);
   }, [item.qty]);
 
-  const handleQuantity = (action) => {
-    if (action === "add") {
-      setQty(qty + 1);
-    } else {
-      setQty(qty - 1);
-    }
-  };
   return (
     <div className="cartItem" id={itemId}>
       <div className="imgBox">
@@ -33,11 +26,11 @@ function CartItem({ name, price, imgSrc, itemId }) {
           <div className="quantity">
             <RemoveRounded
               className="itemRemove"
-              onClick={() => handleQuantity("remove")}
+              onClick={() => dispatch(adjustQty(itemId, "DECREMENT"))}
             />
             <AddRounded
               className="itemAdd"
-              onClick={() => handleQuantity("add")}
+              onClick={() => dispatch(adjustQty(itemId, "INCREMENT"))}
             />
           </div>
         </div>

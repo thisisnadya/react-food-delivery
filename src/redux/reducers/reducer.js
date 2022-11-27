@@ -15,28 +15,32 @@ export const cartReducer = (state = cartInitialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_TO_CART:
       const isInCart = state.cart.find((item) => item.id === action.payload.id);
-      console.log(isInCart);
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        cart: isInCart
+          ? state.cart.map((item) =>
+              item.id === action.payload.id
+                ? { ...item, qty: item.qty + 1 }
+                : item
+            )
+          : [...state.cart, { ...action.payload, qty: 1 }],
       };
     case ActionTypes.ADJUST_QTY:
-      // const itemToUpdateQty = Items.find(
-      //   (item) => item.id === action.payload.itemId
-      // );
       return {
         ...state,
-        cart: state.cart.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, qty: action.payload.itemQty }
-            : item
-        ),
+        cart:
+          action.payload.adjustType == "INCREMENT"
+            ? state.cart.map((item) =>
+                item.id == action.payload.id
+                  ? { ...item, qty: item.qty + 1 }
+                  : item
+              )
+            : state.cart.map((item) =>
+                item.id == action.payload.id
+                  ? { ...item, qty: item.qty - 1 }
+                  : item
+              ),
       };
-    // case ActionTypes.REMOVE_FROM_CART:
-    //   return {
-    //     ...state,
-    //     cart: state.cart.filter((item) => item.id !== action.payload),
-    //   };
     default:
       return state;
   }
