@@ -6,7 +6,9 @@
 <br>
 :white_check_mark: login & logout
 <br>
-:exclamation: fix cart & redux
+:exclamation: fix cart reducer
+<br> 
+- remove from cart
 <br>
 :exclamation: add infinite scroll
 <br>
