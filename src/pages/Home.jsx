@@ -20,13 +20,12 @@ function Home() {
 
   const getMenus = () => {
     axios
-      .get("https://ig-food-menus.herokuapp.com/our-foods")
+      .get(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=10`
+      )
       .then(({ data }) => {
-        let menuItems = [];
-        for (let i = 0; i < itemsPerPage; i++) {
-          menuItems.push(data[i]);
-        }
-        setHomeMenus(menuItems);
+        console.log(data);
+        setHomeMenus(data.recipes);
       });
   };
 
@@ -67,10 +66,10 @@ function Home() {
               {homeMenus.map((item) => (
                 <ItemCard
                   key={item.id}
-                  imgSrc={item.img}
-                  name={item.name}
-                  ratings={item.rate}
-                  price={item.price}
+                  imgSrc={item.image}
+                  name={item.title}
+                  ratings={item.aggregateLikes}
+                  price={item.pricePerServing}
                   itemId={item.id}
                 />
               ))}

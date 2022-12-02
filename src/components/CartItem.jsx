@@ -2,16 +2,19 @@ import { AddRounded, RemoveRounded } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { adjustQty } from "../redux/actions/actions";
-// import { removeFromCart } from "../redux/actions/actions";
 
 function CartItem({ name, price, imgSrc, itemId }) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.carts.cart);
   const item = cart.find((item) => item.id === itemId);
   const [qty, setQty] = useState(item.qty);
+  const [itemPrice, setItemPrice] = useState(
+    parseInt(qty) * parseFloat(item.price)
+  );
 
   useEffect(() => {
     setQty(item.qty);
+    setItemPrice(parseInt(qty) * parseFloat(item.price));
   }, [item.qty]);
 
   return (
@@ -37,7 +40,7 @@ function CartItem({ name, price, imgSrc, itemId }) {
       </div>
       <p className="itemPrice">
         <span className="dolorSign">$</span>
-        <span className="itemPriceValue">{price}</span>
+        <span className="itemPriceValue">{itemPrice}</span>
       </p>
     </div>
   );

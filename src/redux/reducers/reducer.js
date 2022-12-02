@@ -1,5 +1,4 @@
 import { ActionTypes } from "../actions/types";
-import { Items } from "../../components/Data";
 
 const cartInitialState = {
   cart: [],
@@ -46,22 +45,22 @@ export const cartReducer = (state = cartInitialState, action) => {
   }
 };
 
-export const favoriteReducer = (state = [], action) => {
-  switch (action.type) {
-    case ActionTypes.HANDLE_FAVORITE:
-      let findItem = Items.find((item) => item.id === action.payload.itemId);
-      let isInFavorite = state.find(
-        (item) => item.id === action.payload.itemId
-      );
-      if (isInFavorite) {
-        return state.filter((item) => item.id !== action.payload.itemId);
-      } else {
-        return [...state, findItem];
-      }
-    default:
-      return state;
-  }
-};
+// export const favoriteReducer = (state = [], action) => {
+//   switch (action.type) {
+//     case ActionTypes.HANDLE_FAVORITE:
+//       let findItem = Items.find((item) => item.id === action.payload.itemId);
+//       let isInFavorite = state.find(
+//         (item) => item.id === action.payload.itemId
+//       );
+//       if (isInFavorite) {
+//         return state.filter((item) => item.id !== action.payload.itemId);
+//       } else {
+//         return [...state, findItem];
+//       }
+//     default:
+//       return state;
+//   }
+// };
 
 export const userReducer = (state = userInitialState, action) => {
   switch (action.type) {

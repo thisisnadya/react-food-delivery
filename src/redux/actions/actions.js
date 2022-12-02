@@ -8,13 +8,6 @@ export const addToCart = (data) => {
   };
 };
 
-export const removeFromCart = (id) => {
-  return {
-    type: ActionTypes.REMOVE_FROM_CART,
-    payload: id,
-  };
-};
-
 export const adjustQty = (id, adjustType) => {
   return {
     type: ActionTypes.ADJUST_QTY,
