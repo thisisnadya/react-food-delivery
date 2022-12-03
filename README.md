@@ -11,7 +11,7 @@
 - remove from cart
 - pricing :white_check_mark:
 - cart count :white_check_mark:
-- total 
+- total price
 <br>
 :exclamation: add infinite scroll
 <br>
