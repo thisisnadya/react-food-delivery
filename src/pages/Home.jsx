@@ -16,21 +16,25 @@ function Home() {
   const currentUser = useSelector((state) => state.user.user);
   const [homeMenus, setHomeMenus] = useState([]);
 
-  const itemsPerPage = 50;
-
-  const getMenus = () => {
-    axios
-      .get(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=10`
-      )
-      .then(({ data }) => {
-        console.log(data);
-        setHomeMenus(data.recipes);
-      });
+  const getHomeMenus = () => {
+    const check = localStorage.getItem("home_menus");
+    if (check) {
+      setHomeMenus(JSON.parse(check));
+    } else {
+      axios
+        .get(
+          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=50`
+        )
+        .then(({ data }) => {
+          localStorage.setItem("home_menus", JSON.stringify(data.recipes));
+          setHomeMenus(data.recipes);
+          console.log(data);
+        });
+    }
   };
 
   useEffect(() => {
-    getMenus();
+    getHomeMenus();
   }, []);
 
   const cartItems = useSelector((state) => state.carts.cart);
@@ -54,10 +58,7 @@ function Home() {
             </div>
             <div className="rowContainer">
               {MenuItems.map((item) => (
-                <NavLink
-                  to={`/category/${item.name.toLowerCase()}`}
-                  key={item.id}
-                >
+                <NavLink to={`/type/${item.name.toLowerCase()}`} key={item.id}>
                   <MenuCard imgSrc={item.imgSrc} name={item.name} />
                 </NavLink>
               ))}

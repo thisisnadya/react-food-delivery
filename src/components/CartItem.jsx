@@ -9,13 +9,13 @@ function CartItem({ name, price, imgSrc, itemId }) {
   const item = cart.find((item) => item.id === itemId);
   const [qty, setQty] = useState(item.qty);
   const [itemPrice, setItemPrice] = useState(
-    parseInt(qty) * parseFloat(item.price)
+    (parseInt(qty) * parseFloat(item.price)).toFixed(2)
   );
 
   useEffect(() => {
     setQty(item.qty);
-    setItemPrice(parseInt(qty) * parseFloat(item.price));
-  }, [item.qty]);
+    setItemPrice((parseInt(qty) * parseFloat(item.price)).toFixed(2));
+  }, [item.qty, qty]);
 
   return (
     <div className="cartItem" id={itemId}>

@@ -18,24 +18,19 @@ function Home() {
   const params = useParams();
   const cartItems = useSelector((state) => state.carts.cart);
 
-  const itemsPerPage = 50;
-
-  const getCategoryMenus = async (category) => {
-    await axios
-      .get(`https://ig-food-menus.herokuapp.com/${category}`)
+  const getCategoryMenus = (type) => {
+    axios
+      .get(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&tags=${type}&number=20`
+      )
       .then(({ data }) => {
-        let menuItems = [];
-        for (let i = 0; i < itemsPerPage; i++) {
-          menuItems.push(data[i]);
-        }
-        setCategoryMenus(menuItems);
+        setCategoryMenus(data.recipes);
       });
   };
 
   useEffect(() => {
-    getCategoryMenus(params.category);
-    console.log(categoryMenus);
-  }, [params.category]);
+    getCategoryMenus(params.type);
+  }, [params.type]);
 
   return (
     <div>
@@ -57,10 +52,7 @@ function Home() {
             </div>
             <div className="rowContainer">
               {MenuItems.map((item) => (
-                <NavLink
-                  to={`/category/${item.name.toLowerCase()}`}
-                  key={item.id}
-                >
+                <NavLink to={`/type/${item.name.toLowerCase()}`} key={item.id}>
                   <MenuCard imgSrc={item.imgSrc} name={item.name} />
                 </NavLink>
               ))}
@@ -69,10 +61,10 @@ function Home() {
               {categoryMenus.map((item) => (
                 <ItemCard
                   key={item.id}
-                  imgSrc={item.img}
-                  name={item.name}
-                  ratings={item.rate}
-                  price={item.price}
+                  imgSrc={item.image}
+                  name={item.title}
+                  ratings={item.aggregateLikes}
+                  price={item.pricePerServing}
                   itemId={item.id}
                 />
               ))}

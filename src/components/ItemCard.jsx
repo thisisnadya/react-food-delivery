@@ -8,9 +8,9 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
   const [currentValue, setCurrentValue] = useState(Math.floor(ratings));
   const dispatch = useDispatch();
 
-  const handleFavouriteIcon = (id) => {
+  const handleFavouriteIcon = (data) => {
     setIsFavourite(!isFavourite);
-    dispatch(handleFavourite(id));
+    dispatch(handleFavourite(data));
   };
 
   const handleClick = (value) => {
@@ -28,7 +28,7 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
     <div className="itemCard" id={itemId}>
       <div
         className={`isfavourite ${isFavourite ? "active" : ""}`}
-        onClick={() => handleFavouriteIcon(itemId)}
+        onClick={() => handleFavouriteIcon(data)}
       >
         <Favorite />
       </div>

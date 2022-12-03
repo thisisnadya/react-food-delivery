@@ -10,8 +10,7 @@ import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import IcecreamIcon from "@mui/icons-material/Icecream";
 import LiquorIcon from "@mui/icons-material/Liquor";
 import SoupKitchenIcon from "@mui/icons-material/SoupKitchen";
-import { GiFruitBowl } from "react-icons/gi";
-
+import RestaurantIcon from "@mui/icons-material/Restaurant";
 const MenuItems = [
   {
     id: 1,
@@ -33,7 +32,7 @@ const MenuItems = [
   },
   {
     id: 4,
-    imgSrc: <LiquorIcon />,
+    imgSrc: <RestaurantIcon />,
     name: "Salad",
     link: "/type/salad",
   },

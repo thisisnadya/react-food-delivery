@@ -18,12 +18,10 @@ export const adjustQty = (id, adjustType) => {
   };
 };
 
-export const handleFavourite = (id) => {
+export const handleFavourite = (data) => {
   return {
     type: ActionTypes.HANDLE_FAVORITE,
-    payload: {
-      itemId: id,
-    },
+    payload: data
   };
 };
 
