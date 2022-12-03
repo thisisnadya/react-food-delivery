@@ -48,7 +48,6 @@ export const cartReducer = (state = cartInitialState, action) => {
 export const favoriteReducer = (state = [], action) => {
   switch (action.type) {
     case ActionTypes.HANDLE_FAVORITE:
-      console.log(action);
       let isInFavorite = state.find((item) => item.id === action.payload.id);
       if (isInFavorite) {
         return state.filter((item) => item.id !== action.payload.id);

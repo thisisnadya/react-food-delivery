@@ -6,6 +6,7 @@ import Favorites from "./pages/Favorites";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Category from "./pages/Category";
+import Detail from "./pages/Detail";
 
 function App() {
   return (
@@ -13,10 +14,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
-        <Route path="/favorite" element={<Favorites />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/type/:type" element={<Category />} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>
   );

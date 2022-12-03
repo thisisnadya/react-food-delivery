@@ -9,16 +9,19 @@ import CartItem from "../components/CartItem";
 import MenuCard from "../components/MenuCard";
 import Header from "../components/Header";
 import BottomMenu from "../components/BottomMenu";
-import { useNavigate, NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import Loading from "react-loading-components";
 import axios from "axios";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
   const [categoryMenus, setCategoryMenus] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const params = useParams();
   const cartItems = useSelector((state) => state.carts.cart);
 
   const getCategoryMenus = (type) => {
+    setIsLoading(true);
     axios
       .get(
         `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&tags=${type}&number=20`
@@ -26,6 +29,7 @@ function Home() {
       .then(({ data }) => {
         setCategoryMenus(data.recipes);
       });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -58,16 +62,22 @@ function Home() {
               ))}
             </div>
             <div className="dishItemContainer">
-              {categoryMenus.map((item) => (
-                <ItemCard
-                  key={item.id}
-                  imgSrc={item.image}
-                  name={item.title}
-                  ratings={item.aggregateLikes}
-                  price={item.pricePerServing}
-                  itemId={item.id}
-                />
-              ))}
+              {isLoading ? (
+                <Loading type="puff" fill="#fa901c" />
+              ) : (
+                <>
+                  {categoryMenus.map((item) => (
+                    <ItemCard
+                      key={item.id}
+                      imgSrc={item.image}
+                      name={item.title}
+                      ratings={item.aggregateLikes}
+                      price={item.pricePerServing}
+                      itemId={item.id}
+                    />
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>

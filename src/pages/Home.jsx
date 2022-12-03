@@ -9,14 +9,19 @@ import CartItem from "../components/CartItem";
 import MenuCard from "../components/MenuCard";
 import Header from "../components/Header";
 import BottomMenu from "../components/BottomMenu";
-import { useNavigate, NavLink } from "react-router-dom";
+import Loading from "react-loading-components";
+import { useNavigate, NavLink, Link } from "react-router-dom";
 import axios from "axios";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
   const [homeMenus, setHomeMenus] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const cartItems = useSelector((state) => state.carts.cart);
+  const navigate = useNavigate();
 
   const getHomeMenus = () => {
+    setIsLoading(true);
     const check = localStorage.getItem("home_menus");
     if (check) {
       setHomeMenus(JSON.parse(check));
@@ -31,13 +36,13 @@ function Home() {
           console.log(data);
         });
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
     getHomeMenus();
   }, []);
 
-  const cartItems = useSelector((state) => state.carts.cart);
   return (
     <div>
       <Header />
@@ -64,16 +69,24 @@ function Home() {
               ))}
             </div>
             <div className="dishItemContainer">
-              {homeMenus.map((item) => (
-                <ItemCard
-                  key={item.id}
-                  imgSrc={item.image}
-                  name={item.title}
-                  ratings={item.aggregateLikes}
-                  price={item.pricePerServing}
-                  itemId={item.id}
-                />
-              ))}
+              {isLoading ? (
+                <Loading type="puff" fill="#fa901c" />
+              ) : (
+                <>
+                  {homeMenus.map((item) => (
+                    <Link to={`/detail/${item.id}`}>
+                      <ItemCard
+                        key={item.id}
+                        imgSrc={item.image}
+                        name={item.title}
+                        ratings={item.aggregateLikes}
+                        price={item.pricePerServing}
+                        itemId={item.id}
+                      />
+                    </Link>
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>

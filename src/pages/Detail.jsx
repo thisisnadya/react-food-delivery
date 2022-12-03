@@ -5,31 +5,31 @@ import CartItem from "../components/CartItem";
 import DebitCard from "../components/DebitCard";
 import SubMenuContainer from "../components/SubMenuContainer";
 import Header from "../components/Header";
-import ItemCard from "../components/ItemCard";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
-function Favorites() {
-  const favorites = useSelector((state) => state.favorites);
+function Detail() {
   const cartItems = useSelector((state) => state.carts.cart);
+  const params = useParams();
+
+  const getDetail = (id) => {
+    axios
+      .get(
+        `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+      )
+      .then(({ data }) => console.log(data));
+  };
+
+  useEffect(() => {
+    getDetail(params.id);
+  }, [params.id]);
   return (
     <div>
       <Header />
       <main>
         <div className="mainContainer">
-          <h3>Your Favorite Items!</h3>
-          <div className="dishItemContainer">
-            {favorites
-              ? favorites.map((item) => (
-                  <ItemCard
-                    key={item.id}
-                    imgSrc={item.img}
-                    name={item.name}
-                    // ratings={item.aggregateLikes}
-                    price={item.price}
-                    itemId={item.id}
-                  />
-                ))
-              : "Add some item to your Favorites!"}
-          </div>
+          <h3>Detail Page</h3>
         </div>
         <div className="rightMenu">
           <div className="debitCardContainer">
@@ -69,4 +69,4 @@ function Favorites() {
   );
 }
 
-export default Favorites;
+export default Detail;

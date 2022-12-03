@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Logout from "./Logout";
 import { logoutAction } from "../redux/actions/actions";
-import { useDispatch, useStore } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import {
   BarChart,
   SearchRounded,
@@ -12,8 +12,9 @@ import { useEffect } from "react";
 function Header() {
   const dispatch = useDispatch();
   const store = useStore();
-
   const currentUser = store.getState().user.user;
+  const cart = useSelector((state) => state.carts.cart);
+  const [cartCounts, setCartCounts] = useState(0);
 
   useEffect(() => {
     const toggleIcon = document.querySelector(".toggleMenu");
@@ -21,10 +22,17 @@ function Header() {
     toggleIcon.addEventListener("click", () => {
       document.querySelector(".rightMenu").classList.toggle("active");
     });
-  }, []);
+    getCartCounts();
+  }, [cart]);
 
   const logout = () => {
     dispatch(logoutAction());
+  };
+
+  const getCartCounts = () => {
+    let count = 0;
+    cart.forEach((item) => (count += item.qty));
+    setCartCounts(count);
   };
 
   return (
@@ -40,7 +48,7 @@ function Header() {
       </div>
       <div className="shoppingCart">
         <ShoppingCartRounded className="cart" />
-        <div className="cart_content">{/* <p>{state.length}</p> */}</div>
+        <div className="cart_content">{cartCounts}</div>
       </div>
       <div className="profileContainer">
         <div className="imgBox">

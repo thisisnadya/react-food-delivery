@@ -2,7 +2,7 @@ import React from "react";
 
 function MenuContainer({ icon, isHome }) {
   return (
-    <li className={isHome ? "active" : ""}>
+    <li>
       <span className="icon">{icon}</span>
     </li>
   );

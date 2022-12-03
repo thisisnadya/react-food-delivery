@@ -65,7 +65,7 @@ const BottomMenuData = [
   },
   {
     name: "Favorite",
-    link: "/favorite",
+    link: "/favorites",
     icon: <Favorite />,
     isHome: false,
   },
