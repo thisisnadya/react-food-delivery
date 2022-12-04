@@ -10,8 +10,8 @@
 <br> 
 - remove from cart
 - pricing :white_check_mark:
-- cart count
-- total 
+- cart count :white_check_mark:
+- total price
 <br>
 :exclamation: add infinite scroll
 <br>
@@ -22,6 +22,10 @@
 :exclamation: search functionality
 <br>
 :exclamation: 404 page
+<br>
+:white_check_mark: detail page
+<br>
+:white_check_mark: favorite page
 <br>
 :exclamation: user setting
 
