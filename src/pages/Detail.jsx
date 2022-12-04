@@ -20,26 +20,20 @@ function Detail() {
   const dispatch = useDispatch();
   const params = useParams();
 
+  useEffect(() => {
+    getDetail(params.id);
+  }, [params.id]);
+
   const getDetail = async (id) => {
     await axios
       .get(
         `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
       )
       .then(({ data }) => {
+        console.log(data);
         setDetail(data);
       });
   };
-
-  const data = {
-    id: detail.id,
-    img: detail.image,
-    name: detail.title,
-    price: detail.pricePerServings,
-  };
-
-  useEffect(() => {
-    getDetail(params.id);
-  }, [params.id]);
 
   return (
     <div>
@@ -77,13 +71,31 @@ function Detail() {
                   <div className="buttons d-flex">
                     <button
                       className="btn btn-custom d-flex justify-content-center align-items-center"
-                      onClick={() => dispatch(addToCart(data))}
+                      onClick={() =>
+                        dispatch(
+                          addToCart({
+                            id: detail.id,
+                            img: detail.image,
+                            name: detail.title,
+                            price: detail.pricePerServing,
+                          })
+                        )
+                      }
                     >
                       Add To Cart <AddRounded />
                     </button>
                     <button
                       className="btn btn-custom2 ms-4  d-flex justify-content-center align-items-center"
-                      onClick={() => dispatch(handleFavourite(data))}
+                      onClick={() =>
+                        dispatch(
+                          handleFavourite({
+                            id: detail.id,
+                            img: detail.image,
+                            name: detail.title,
+                            price: detail.pricePerServing,
+                          })
+                        )
+                      }
                     >
                       Favorite <Favorite />
                     </button>

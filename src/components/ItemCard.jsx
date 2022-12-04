@@ -37,7 +37,7 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
         <img src={imgSrc} alt="" className="itemImg" />
       </div>
       <div className="itemContent">
-        <Link to={`/detail/${itemId}`}>
+        <Link to={`/detail/${itemId}`} key={itemId}>
           <h3 className="itemName">{name}</h3>
         </Link>
         <div className="bottom">

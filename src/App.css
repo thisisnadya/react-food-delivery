@@ -539,6 +539,11 @@ main {
   color: #fa901c;
 }
 
+.image-404 img {
+  max-width: 500px;
+  max-height: 400px;
+}
+
 /* right menu styles */
 .rightMenu {
   width: 350px;
