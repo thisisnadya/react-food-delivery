@@ -9,22 +9,32 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
+import { addToCart, handleFavourite } from "../redux/actions/actions";
+import { AddRounded, Favorite } from "@mui/icons-material";
 
 function Detail() {
   const cartItems = useSelector((state) => state.carts.cart);
   const [detail, setDetail] = useState();
+  const dispatch = useDispatch();
   const params = useParams();
 
-  const getDetail = (id) => {
-    axios
+  const getDetail = async (id) => {
+    await axios
       .get(
         `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
       )
       .then(({ data }) => {
-        console.log(data);
         setDetail(data);
       });
+  };
+
+  const data = {
+    id: detail.id,
+    img: detail.image,
+    name: detail.title,
+    price: detail.pricePerServings,
   };
 
   useEffect(() => {
@@ -64,8 +74,19 @@ function Detail() {
                       free
                     </h6>
                   </div>
-                  <div className="button">
-                    <button className="btn btn-custom">Add To Cart</button>
+                  <div className="buttons d-flex">
+                    <button
+                      className="btn btn-custom d-flex justify-content-center align-items-center"
+                      onClick={() => dispatch(addToCart(data))}
+                    >
+                      Add To Cart <AddRounded />
+                    </button>
+                    <button
+                      className="btn btn-custom2 ms-4  d-flex justify-content-center align-items-center"
+                      onClick={() => dispatch(handleFavourite(data))}
+                    >
+                      Favorite <Favorite />
+                    </button>
                   </div>
                 </div>
               </div>
