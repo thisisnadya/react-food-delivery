@@ -21,7 +21,7 @@
 <br>
 :exclamation: search functionality
 <br>
-:exclamation: 404 page
+:white_check_mark: 404 page
 <br>
 :white_check_mark: detail page
 <br>
