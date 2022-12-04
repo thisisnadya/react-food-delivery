@@ -2,6 +2,7 @@ import { AddRounded, Favorite, StarRounded } from "@mui/icons-material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart, handleFavourite } from "../redux/actions/actions";
+import { Link } from "react-router-dom";
 
 function ItemCard({ imgSrc, name, ratings, price, itemId }) {
   const [isFavourite, setIsFavourite] = useState(false);
@@ -36,7 +37,9 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
         <img src={imgSrc} alt="" className="itemImg" />
       </div>
       <div className="itemContent">
-        <h3 className="itemName">{name}</h3>
+        <Link to={`/detail/${itemId}`}>
+          <h3 className="itemName">{name}</h3>
+        </Link>
         <div className="bottom">
           <div className="ratings">
             {Array.apply(null, { length: 5 }).map((e, i) => (

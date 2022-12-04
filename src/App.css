@@ -508,6 +508,36 @@ main {
   font-size: 16px;
 }
 
+.detail_wrapper {
+  margin-top: 20px;
+  margin-bottom: 5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.detail_wrapper .image img {
+  min-width: 400;
+  max-width: 400;
+  max-height: 300px;
+}
+
+.detail_wrapper .info p {
+  font-size: 12px;
+}
+
+.btn-custom {
+  background-color: #fa901c;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 20px;
+}
+
+.btn-custom:hover {
+  background-color: #fff;
+  border: 1px solid #fa901c;
+  color: #fa901c;
+}
+
 /* right menu styles */
 .rightMenu {
   width: 350px;
@@ -864,9 +894,6 @@ main {
     font-size: 15px;
     margin: 12px 0;
     width: unset;
-  }
-  .bannerContent a {
-    font-size: 16px;
   }
   main {
     display: flex;

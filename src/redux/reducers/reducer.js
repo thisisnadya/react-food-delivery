@@ -36,7 +36,9 @@ export const cartReducer = (state = cartInitialState, action) => {
               )
             : state.cart.map((item) =>
                 item.id === action.payload.id
-                  ? { ...item, qty: item.qty - 1 }
+                  ? item.qty == 1
+                    ? state.cart.filter((item) => item.id !== action.payload.id)
+                    : { ...item, qty: item.qty - 1 }
                   : item
               ),
       };

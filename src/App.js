@@ -7,18 +7,21 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Category from "./pages/Category";
 import Detail from "./pages/Detail";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/type/:type" element={<Category />} />
         <Route path="/detail/:id" element={<Detail />} />
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );

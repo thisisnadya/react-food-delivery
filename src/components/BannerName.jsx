@@ -7,7 +7,7 @@ function BannerName({ name, discount, link }) {
       <p>
         Get free discount for every <span>${discount}</span> purchase
       </p>
-      <a href={link}>Learn More</a>
+      <button className="btn btn-custom">Learn more</button>
     </div>
   );
 }

@@ -74,16 +74,14 @@ function Home() {
               ) : (
                 <>
                   {homeMenus.map((item) => (
-                    <Link to={`/detail/${item.id}`}>
-                      <ItemCard
-                        key={item.id}
-                        imgSrc={item.image}
-                        name={item.title}
-                        ratings={item.aggregateLikes}
-                        price={item.pricePerServing}
-                        itemId={item.id}
-                      />
-                    </Link>
+                    <ItemCard
+                      key={item.id}
+                      imgSrc={item.image}
+                      name={item.title}
+                      ratings={item.aggregateLikes}
+                      price={item.pricePerServing}
+                      itemId={item.id}
+                    />
                   ))}
                 </>
               )}
