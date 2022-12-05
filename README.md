@@ -4,8 +4,7 @@
 <br>
 :white_check_mark: fetch <a href='https://spoonacular.com/food-api/docs'>API</a>
 <br>
-:white_check_mark: login & logout
-- +oauth
+:white_check_mark: login & logout (- oauth)
 <br>
 :exclamation: fix cart reducer
 <br> 
