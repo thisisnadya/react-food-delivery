@@ -30,7 +30,6 @@ function Detail() {
         `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
       )
       .then(({ data }) => {
-        console.log(data);
         setDetail(data);
       });
   };
@@ -49,8 +48,9 @@ function Detail() {
                 <div className="additional-info ms-5">
                   <div className="summary-item">
                     <h2>{detail.title}</h2>
-                    {detail.dishTypes.map((item) => (
-                      <h5>{item}</h5>
+                    <h4 className="fw-bold">$ {detail.pricePerServing}</h4>
+                    {detail.dishTypes.map((item, idx) => (
+                      <h5 key={idx}>{item}</h5>
                     ))}
                     <h6>
                       {detail.vegan ? <CheckIcon /> : <CloseIcon />} Vegan

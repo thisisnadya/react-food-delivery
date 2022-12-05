@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Category from "./pages/Category";
 import Detail from "./pages/Detail";
 import PageNotFound from "./pages/PageNotFound";
+import Searched from "./pages/Searched";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/type/:type" element={<Category />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/search/:search" element={<Searched />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

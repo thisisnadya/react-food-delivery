@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Logout from "./Logout";
+import Search from "./Search";
 import { logoutAction } from "../redux/actions/actions";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import {
   BarChart,
-  SearchRounded,
   ShoppingCartRounded,
 } from "@mui/icons-material";
 import { useEffect } from "react";
@@ -42,10 +42,7 @@ function Header() {
         className="logo"
         alt=""
       />
-      <div className="inputBox">
-        <SearchRounded className="searchIcon" />
-        <input type="text" placeholder="Search" />
-      </div>
+      <Search />
       <div className="shoppingCart">
         <ShoppingCartRounded className="cart" />
         <div className="cart_content">{cartCounts}</div>
