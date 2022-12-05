@@ -19,7 +19,7 @@
 <br>
 :white_check_mark: add category /type pages
 <br>
-:exclamation: search functionality
+:white_check_mark: search functionality
 <br>
 :white_check_mark: 404 page
 <br>
