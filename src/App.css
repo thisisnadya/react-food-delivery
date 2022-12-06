@@ -829,14 +829,14 @@ main {
 }
 
 .new-section {
-  padding: 80px 15px 5px 15px;
+  padding: 0px 15px 5px 15px;
   height: 100vh;
 }
 
 .form {
   width: 40%;
   height: 350px;
-  padding: 50px;
+  padding: 20px 50px 50px 50px;
   color: #2a2b3c;
 }
 
@@ -860,6 +860,18 @@ main {
 }
 .btn-logout {
   cursor: pointer;
+}
+
+.btn-sign-in {
+  width: 100%;
+  border: 1px solid #fa901c;
+  color: #f8901c;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-sign-in:hover {
+  box-shadow: #f8901c 0px 7px 29px 0px;
 }
 
 @media screen and (min-width: 650px) {

@@ -3,11 +3,10 @@ import Logout from "./Logout";
 import Search from "./Search";
 import { logoutAction } from "../redux/actions/actions";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import {
-  BarChart,
-  ShoppingCartRounded,
-} from "@mui/icons-material";
+import { BarChart, ShoppingCartRounded } from "@mui/icons-material";
 import { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks";
+import { auth } from "../utils/firebase";
 
 function Header() {
   const dispatch = useDispatch();
@@ -15,6 +14,8 @@ function Header() {
   const currentUser = store.getState().user.user;
   const cart = useSelector((state) => state.carts.cart);
   const [cartCounts, setCartCounts] = useState(0);
+
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     const toggleIcon = document.querySelector(".toggleMenu");
