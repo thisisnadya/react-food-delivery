@@ -15,10 +15,11 @@ import axios from "axios";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
+  const cart = useSelector((state) => state.carts.cart);
   const [homeMenus, setHomeMenus] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [grandTotal, setGrandTotal] = useState(0);
   const cartItems = useSelector((state) => state.carts.cart);
-  const navigate = useNavigate();
 
   const getHomeMenus = () => {
     setIsLoading(true);
@@ -39,9 +40,19 @@ function Home() {
     setIsLoading(false);
   };
 
+  let total = 0;
+
+  const getGrandTotal = () => {
+    setGrandTotal(cart.map((item) => (total += parseFloat(item.totalPrice))));
+  };
+
   useEffect(() => {
     getHomeMenus();
   }, []);
+
+  useEffect(() => {
+    getGrandTotal();
+  }, [cart]);
 
   return (
     <div>
@@ -114,7 +125,8 @@ function Home() {
             <div className="totalSection">
               <h3>Total</h3>
               <p>
-                <span>$ </span>45.0
+                <span>$ </span>
+                {grandTotal}{" "}
               </p>
             </div>
             <button className="checkOut">CheckOut</button>

@@ -33,18 +33,18 @@ function LoginForm(props) {
 
   // facebook sign in
 
-  const fbProvider = new FacebookAuthProvider();
+  // const fbProvider = new FacebookAuthProvider();
 
-  const facebookLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, fbProvider);
+  // const facebookLogin = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, fbProvider);
 
-      console.log(result);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     console.log(result);
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   let { handleSubmit, setEmail, setPassword } = props.loginState;
 
@@ -83,13 +83,13 @@ function LoginForm(props) {
         >
           <FcGoogle /> <span className="ps-2 fw-500">Sign in with Google</span>
         </button>
-        <button
+        {/* <button
           className="btn btn-sign-in d-flex justify-content-center align-items-center"
           onClick={facebookLogin}
         >
           <GrFacebook />{" "}
           <span className="ps-2 fw-500">Sign in with Facebook</span>
-        </button>
+        </button> */}
       </div>
     </form>
   );

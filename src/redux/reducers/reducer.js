@@ -19,10 +19,21 @@ export const cartReducer = (state = cartInitialState, action) => {
         cart: isInCart
           ? state.cart.map((item) =>
               item.id === action.payload.id
-                ? { ...item, qty: item.qty + 1 }
+                ? {
+                    ...item,
+                    qty: item.qty + 1,
+                    // totalPrice: item.qty * action.payload.price.toFixed(2),
+                  }
                 : item
             )
-          : [...state.cart, { ...action.payload, qty: 1 }],
+          : [
+              ...state.cart,
+              {
+                ...action.payload,
+                qty: 1,
+                totalPrice: action.payload.price,
+              },
+            ],
       };
     case ActionTypes.ADJUST_QTY:
       return {
@@ -31,16 +42,33 @@ export const cartReducer = (state = cartInitialState, action) => {
           action.payload.adjustType === "INCREMENT"
             ? state.cart.map((item) =>
                 item.id === action.payload.id
-                  ? { ...item, qty: item.qty + 1 }
+                  ? {
+                      ...item,
+                      qty: item.qty + 1,
+                      // totalPrice: item.qty * action.payload.price.toFixed(2),
+                    }
                   : item
               )
             : state.cart.map((item) =>
                 item.id === action.payload.id
                   ? item.qty == 1
                     ? state.cart.filter((item) => item.id !== action.payload.id)
-                    : { ...item, qty: item.qty - 1 }
+                    : {
+                        ...item,
+                        qty: item.qty - 1,
+                        // totalPrice: item.qty * action.payload.price.toFixed(2),
+                      }
                   : item
               ),
+      };
+    case ActionTypes.SET_ITEM_TOTAL_PRICE:
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, totalPrice: action.payload.priceCount }
+            : item
+        ),
       };
     default:
       return state;

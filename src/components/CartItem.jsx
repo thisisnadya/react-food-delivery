@@ -1,7 +1,7 @@
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { adjustQty } from "../redux/actions/actions";
+import { adjustQty, setTotalItemPrice } from "../redux/actions/actions";
 
 function CartItem({ name, price, imgSrc, itemId }) {
   const dispatch = useDispatch();
@@ -15,7 +15,8 @@ function CartItem({ name, price, imgSrc, itemId }) {
   useEffect(() => {
     setQty(item.qty);
     setItemPrice((parseInt(qty) * parseFloat(item.price)).toFixed(2));
-  }, [item.qty, qty]);
+    dispatch(setTotalItemPrice(itemId, itemPrice));
+  }, [qty, item.qty, itemPrice]);
 
   return (
     <div className="cartItem" id={itemId}>
