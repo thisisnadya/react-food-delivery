@@ -2,7 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { GrFacebook } from "react-icons/gr";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  FacebookAuthProvider,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../utils/firebase";
 
 function LoginForm(props) {
@@ -11,12 +16,31 @@ function LoginForm(props) {
     navigate("/register");
   };
 
+  // google sign in
+
   const googleProvider = new GoogleAuthProvider();
 
   const googleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       console.log(result.user);
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // facebook sign in
+
+  const fbProvider = new FacebookAuthProvider();
+
+  const facebookLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, fbProvider);
+
+      console.log(result);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +83,10 @@ function LoginForm(props) {
         >
           <FcGoogle /> <span className="ps-2 fw-500">Sign in with Google</span>
         </button>
-        <button className="btn btn-sign-in d-flex justify-content-center align-items-center">
+        <button
+          className="btn btn-sign-in d-flex justify-content-center align-items-center"
+          onClick={facebookLogin}
+        >
           <GrFacebook />{" "}
           <span className="ps-2 fw-500">Sign in with Facebook</span>
         </button>

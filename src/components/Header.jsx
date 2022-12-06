@@ -1,17 +1,18 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Logout from "./Logout";
 import Search from "./Search";
 import { logoutAction } from "../redux/actions/actions";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { BarChart, ShoppingCartRounded } from "@mui/icons-material";
 import { useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 
 function Header() {
   const dispatch = useDispatch();
   const store = useStore();
-  const currentUser = store.getState().user.user;
+  // const currentUser = store.getState().user.user;
   const cart = useSelector((state) => state.carts.cart);
   const [cartCounts, setCartCounts] = useState(0);
 
@@ -48,19 +49,31 @@ function Header() {
         <ShoppingCartRounded className="cart" />
         <div className="cart_content">{cartCounts}</div>
       </div>
-      <div className="profileContainer">
-        <div className="imgBox">
-          <img
-            className="profilePic"
-            src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fprofile.jpg?alt=media&token=36821495-39b9-4145-bde3-16c47c6ff937"
-            alt=""
-          />
+
+      {user ? (
+        <div className="profileContainer">
+          <div className="imgBox">
+            <img
+              className="profilePic"
+              src={user.photoURL}
+              alt="avatar"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <h2 className="username me-2">{user.displayName}</h2>
+          {/* <div className="btn-logout ms-2">
+            <Logout onLogout={logout} />
+          </div> */}
+          <button className="btn btn-custom" onClick={() => auth.signOut()}>
+            Sign Out
+          </button>
         </div>
-        <h2 className="username me-2">{currentUser}</h2>
-        <div className="btn-logout ms-2">
-          <Logout onLogout={logout} />
-        </div>
-      </div>
+      ) : (
+        <Link to="/login">
+          <button className="btn btn-custom">Sign In</button>
+        </Link>
+      )}
+
       <div className="toggleMenu">
         <BarChart className="toggleIcon" />
       </div>
