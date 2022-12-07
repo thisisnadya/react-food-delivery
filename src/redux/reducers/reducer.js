@@ -22,7 +22,7 @@ export const cartReducer = (state = cartInitialState, action) => {
                 ? {
                     ...item,
                     qty: item.qty + 1,
-                    // totalPrice: item.qty * action.payload.price.toFixed(2),
+                    totalPrice: parseFloat((item.qty + 1) * item.price),
                   }
                 : item
             )
@@ -45,30 +45,21 @@ export const cartReducer = (state = cartInitialState, action) => {
                   ? {
                       ...item,
                       qty: item.qty + 1,
-                      // totalPrice: item.qty * action.payload.price.toFixed(2),
+                      totalPrice: parseFloat((item.qty + 1) * item.price),
                     }
                   : item
               )
             : state.cart.map((item) =>
                 item.id === action.payload.id
                   ? item.qty == 1
-                    ? state.cart.filter((item) => item.id !== action.payload.id)
+                    ? state.cart.filter((menu) => menu.id !== action.payload.id)
                     : {
                         ...item,
                         qty: item.qty - 1,
-                        // totalPrice: item.qty * action.payload.price.toFixed(2),
+                        totalPrice: parseFloat((item.qty - 1) * item.price),
                       }
                   : item
               ),
-      };
-    case ActionTypes.SET_ITEM_TOTAL_PRICE:
-      return {
-        ...state,
-        cart: state.cart.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, totalPrice: action.payload.priceCount }
-            : item
-        ),
       };
     default:
       return state;

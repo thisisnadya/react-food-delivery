@@ -18,16 +18,6 @@ export const adjustQty = (id, adjustType) => {
   };
 };
 
-export const setTotalItemPrice = (id, priceCount) => {
-  return {
-    type: ActionTypes.SET_ITEM_TOTAL_PRICE,
-    payload: {
-      id,
-      priceCount,
-    },
-  };
-};
-
 export const handleFavourite = (data) => {
   return {
     type: ActionTypes.HANDLE_FAVORITE,

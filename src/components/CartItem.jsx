@@ -1,22 +1,21 @@
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { adjustQty, setTotalItemPrice } from "../redux/actions/actions";
+import { adjustQty } from "../redux/actions/actions";
 
 function CartItem({ name, price, imgSrc, itemId }) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.carts.cart);
   const item = cart.find((item) => item.id === itemId);
   const [qty, setQty] = useState(item.qty);
-  const [itemPrice, setItemPrice] = useState(
-    (parseInt(qty) * parseFloat(item.price)).toFixed(2)
-  );
+  // const [itemPrice, setItemPrice] = useState(
+  //   (parseInt(qty) * parseFloat(price)).toFixed(2)
+  // );
 
   useEffect(() => {
     setQty(item.qty);
-    setItemPrice((parseInt(qty) * parseFloat(item.price)).toFixed(2));
-    dispatch(setTotalItemPrice(itemId, itemPrice));
-  }, [qty, item.qty, itemPrice]);
+    // setItemPrice((parseInt(qty) * parseFloat(item.price)).toFixed(2));
+  }, [qty, item.qty]);
 
   return (
     <div className="cartItem" id={itemId}>
@@ -41,7 +40,7 @@ function CartItem({ name, price, imgSrc, itemId }) {
       </div>
       <p className="itemPrice">
         <span className="dolorSign">$</span>
-        <span className="itemPriceValue">{itemPrice}</span>
+        <span className="itemPriceValue">{item.totalPrice}</span>
       </p>
     </div>
   );
