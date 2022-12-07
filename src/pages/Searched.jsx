@@ -1,21 +1,22 @@
 import React from "react";
-import DebitCard from "../components/DebitCard";
 import Header from "../components/Header";
 import { useParams } from "react-router-dom";
-import SubMenuContainer from "../components/SubMenuContainer";
 import { useEffect } from "react";
-import CartItem from "../components/CartItem";
 import BottomMenu from "../components/BottomMenu";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import ItemCard from "../components/ItemCard";
+import Loading from "react-loading-components";
+import RightMenu from "../components/RightMenu";
 
 function Searched() {
   const cartItems = useSelector((state) => state.carts.cart);
   const [searchedItem, setSearchedItem] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const params = useParams();
   const getSearch = (query) => {
+    setIsLoading(true);
     axios
       .get(
         `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}`
@@ -24,6 +25,7 @@ function Searched() {
         console.log(data);
         setSearchedItem(data.results);
       });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -35,55 +37,34 @@ function Searched() {
       <Header />
       <main>
         <div className="mainContainer">
-          <h3>
-            Result for <span className="fw-bold">"{params.search}"</span>
-          </h3>
+          {searchedItem ? (
+            <h3>
+              Results for <span className="fw-bold">"{params.search}"</span>
+            </h3>
+          ) : (
+            <h3>
+              No Result for <span className="fw-bold">"{params.search}"</span>
+            </h3>
+          )}
+
           <div className="dishItemContainer">
-            {searchedItem &&
+            {!isLoading && searchedItem ? (
               searchedItem.map((item) => (
                 <ItemCard
                   key={item.id}
                   imgSrc={item.image}
                   name={item.title}
                   // ratings={item.aggregateLikes}
-                  // price={item.price}
+                  price={item.pricePerServing ? item.pricePerServing : 20.45}
                   itemId={item.id}
                 />
-              ))}
+              ))
+            ) : (
+              <Loading type="puff" fill="#fa901c" width={100} height={100} />
+            )}
           </div>
         </div>
-        <div className="rightMenu">
-          <div className="debitCardContainer">
-            <div className="debitCard">
-              <DebitCard />
-            </div>
-          </div>
-          <div className="cardCheckOutContainer">
-            <SubMenuContainer name={"Carts Items"} />
-            <div className="cartContainer">
-              <div className="cartItems">
-                {cartItems
-                  ? cartItems.map((item) => (
-                      <CartItem
-                        key={item.id}
-                        name={item.name}
-                        imgSrc={item.img}
-                        price={item.price}
-                        itemId={item.id}
-                      />
-                    ))
-                  : "Nothing found here"}
-              </div>
-            </div>
-            <div className="totalSection">
-              <h3>Total</h3>
-              <p>
-                <span>$ </span>45.0
-              </p>
-            </div>
-            <button className="checkOut">CheckOut</button>
-          </div>
-        </div>
+        <RightMenu />
       </main>
       <BottomMenu />
     </div>

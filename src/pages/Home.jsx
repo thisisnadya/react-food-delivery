@@ -4,21 +4,20 @@ import BannerName from "../components/BannerName";
 import SubMenuContainer from "../components/SubMenuContainer";
 import { MenuItems } from "../components/Data";
 import ItemCard from "../components/ItemCard";
-import DebitCard from "../components/DebitCard";
-import CartItem from "../components/CartItem";
 import MenuCard from "../components/MenuCard";
 import Header from "../components/Header";
 import BottomMenu from "../components/BottomMenu";
 import Loading from "react-loading-components";
-import { useNavigate, NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
+import RightMenu from "../components/RightMenu";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
   const cartItems = useSelector((state) => state.carts.cart);
   const [homeMenus, setHomeMenus] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [grandTotal, setGrandTotal] = useState(0);
+  // const [grandTotal, setGrandTotal] = useState(0);
 
   const getHomeMenus = () => {
     setIsLoading(true);
@@ -39,15 +38,19 @@ function Home() {
     setIsLoading(false);
   };
 
-  const getGrandTotal = () => {
-    let total = 0;
-    cartItems.forEach((item) => (total += parseFloat(item.totalPrice)));
-    setGrandTotal(total);
-  };
+  // const getGrandTotal = () => {
+  //   let total = 0;
+  //   cartItems.forEach((item) => (total += item.totalPrice));
+  //   setGrandTotal(total.toFixed(2));
+  // };
 
   useEffect(() => {
     getHomeMenus();
   }, []);
+
+  // useEffect(() => {
+  //   getGrandTotal();
+  // }, [cartItems]);
 
   return (
     <div>
@@ -94,39 +97,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="rightMenu">
-          <div className="debitCardContainer">
-            <div className="debitCard">
-              <DebitCard />
-            </div>
-          </div>
-          <div className="cardCheckOutContainer">
-            <SubMenuContainer name={"Carts Items"} />
-            <div className="cartContainer">
-              <div className="cartItems">
-                {cartItems
-                  ? cartItems.map((item) => (
-                      <CartItem
-                        key={item.id}
-                        name={item.name}
-                        imgSrc={item.img}
-                        price={item.price}
-                        itemId={item.id}
-                      />
-                    ))
-                  : "Nothing found here"}
-              </div>
-            </div>
-            <div className="totalSection">
-              <h3>Total</h3>
-              <p>
-                <span>$ </span>
-                {grandTotal}{" "}
-              </p>
-            </div>
-            <button className="checkOut">CheckOut</button>
-          </div>
-        </div>
+        <RightMenu />
       </main>
       <BottomMenu />
     </div>

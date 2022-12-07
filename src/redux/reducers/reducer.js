@@ -22,7 +22,9 @@ export const cartReducer = (state = cartInitialState, action) => {
                 ? {
                     ...item,
                     qty: item.qty + 1,
-                    totalPrice: parseFloat((item.qty + 1) * item.price),
+                    totalPrice: parseFloat((item.qty + 1) * item.price).toFixed(
+                      2
+                    ),
                   }
                 : item
             )
@@ -45,7 +47,9 @@ export const cartReducer = (state = cartInitialState, action) => {
                   ? {
                       ...item,
                       qty: item.qty + 1,
-                      totalPrice: parseFloat((item.qty + 1) * item.price),
+                      totalPrice: parseFloat(
+                        (item.qty + 1) * item.price
+                      ).toFixed(2),
                     }
                   : item
               )
@@ -56,7 +60,9 @@ export const cartReducer = (state = cartInitialState, action) => {
                     : {
                         ...item,
                         qty: item.qty - 1,
-                        totalPrice: parseFloat((item.qty - 1) * item.price),
+                        totalPrice: parseFloat(
+                          (item.qty - 1) * item.price
+                        ).toFixed(2),
                       }
                   : item
               ),

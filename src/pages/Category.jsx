@@ -4,21 +4,19 @@ import BannerName from "../components/BannerName";
 import SubMenuContainer from "../components/SubMenuContainer";
 import { MenuItems } from "../components/Data";
 import ItemCard from "../components/ItemCard";
-import DebitCard from "../components/DebitCard";
-import CartItem from "../components/CartItem";
 import MenuCard from "../components/MenuCard";
 import Header from "../components/Header";
 import BottomMenu from "../components/BottomMenu";
 import { NavLink, useParams } from "react-router-dom";
 import Loading from "react-loading-components";
 import axios from "axios";
+import RightMenu from "../components/RightMenu";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
   const [categoryMenus, setCategoryMenus] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const params = useParams();
-  const cartItems = useSelector((state) => state.carts.cart);
 
   const getCategoryMenus = (type) => {
     setIsLoading(true);
@@ -81,38 +79,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="rightMenu">
-          <div className="debitCardContainer">
-            <div className="debitCard">
-              <DebitCard />
-            </div>
-          </div>
-          <div className="cardCheckOutContainer">
-            <SubMenuContainer name={"Carts Items"} />
-            <div className="cartContainer">
-              <div className="cartItems">
-                {cartItems
-                  ? cartItems.map((item) => (
-                      <CartItem
-                        key={item.id}
-                        name={item.name}
-                        imgSrc={item.img}
-                        price={item.price}
-                        itemId={item.id}
-                      />
-                    ))
-                  : "Nothing found here"}
-              </div>
-            </div>
-            <div className="totalSection">
-              <h3>Total</h3>
-              <p>
-                <span>$ </span>45.0
-              </p>
-            </div>
-            <button className="checkOut">CheckOut</button>
-          </div>
-        </div>
+        <RightMenu />
       </main>
       <BottomMenu />
     </div>

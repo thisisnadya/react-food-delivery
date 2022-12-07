@@ -13,10 +13,13 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { addToCart, handleFavourite } from "../redux/actions/actions";
 import { AddRounded, Favorite } from "@mui/icons-material";
+import Loading from "react-loading-components";
+import RightMenu from "../components/RightMenu";
 
 function Detail() {
   const cartItems = useSelector((state) => state.carts.cart);
   const [detail, setDetail] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -25,6 +28,7 @@ function Detail() {
   }, [params.id]);
 
   const getDetail = async (id) => {
+    setIsLoading(true);
     await axios
       .get(
         `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
@@ -32,6 +36,7 @@ function Detail() {
       .then(({ data }) => {
         setDetail(data);
       });
+    setIsLoading(false);
   };
 
   return (
@@ -39,7 +44,7 @@ function Detail() {
       <Header />
       <main>
         <div className="mainContainer">
-          {detail && (
+          {!isLoading && detail ? (
             <div className="detail_wrapper">
               <div className="detail_wrapper_top d-flex">
                 <div className="image">
@@ -106,40 +111,11 @@ function Detail() {
                 <p dangerouslySetInnerHTML={{ __html: detail.summary }}></p>
               </div>
             </div>
+          ) : (
+            <Loading type="puff" fill="#fa901c" width={100} height={100} />
           )}
         </div>
-        <div className="rightMenu">
-          <div className="debitCardContainer">
-            <div className="debitCard">
-              <DebitCard />
-            </div>
-          </div>
-          <div className="cardCheckOutContainer">
-            <SubMenuContainer name={"Carts Items"} />
-            <div className="cartContainer">
-              <div className="cartItems">
-                {cartItems
-                  ? cartItems.map((item) => (
-                      <CartItem
-                        key={item.id}
-                        name={item.name}
-                        imgSrc={item.img}
-                        price={item.price}
-                        itemId={item.id}
-                      />
-                    ))
-                  : "Nothing found here"}
-              </div>
-            </div>
-            <div className="totalSection">
-              <h3>Total</h3>
-              <p>
-                <span>$ </span>45.0
-              </p>
-            </div>
-            <button className="checkOut">CheckOut</button>
-          </div>
-        </div>
+        <RightMenu />
       </main>
       <BottomMenu />
     </div>
