@@ -4,14 +4,14 @@
 <br>
 :white_check_mark: fetch <a href='https://spoonacular.com/food-api/docs'>API</a>
 <br>
-:white_check_mark: login & logout (- oauth)
+:white_check_mark: login & logout (+ sign in google works)
 <br>
 :exclamation: fix cart reducer
 <br> 
 - remove from cart
 - pricing :white_check_mark:
 - cart count :white_check_mark:
-- total price
+- total price :white_check_mark:
 <br>
 :exclamation: add infinite scroll
 <br>
@@ -26,6 +26,8 @@
 :white_check_mark: detail page
 <br>
 :white_check_mark: favorite page
+<br>
+:white_check_mark: loading component
 <br>
 :exclamation: user setting
 
