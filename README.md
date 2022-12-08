@@ -29,6 +29,8 @@
 <br>
 :white_check_mark: loading component
 <br>
+:white_check_mark: page under construction
+<br>
 :exclamation: user setting
 
 
