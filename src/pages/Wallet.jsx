@@ -4,7 +4,7 @@ import RightMenu from "../components/RightMenu";
 import Header from "../components/Header";
 import underConstruction from "../assets/under_construction.svg";
 
-function Chat() {
+function Wallet() {
   return (
     <div>
       <Header />
@@ -24,4 +24,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Wallet;

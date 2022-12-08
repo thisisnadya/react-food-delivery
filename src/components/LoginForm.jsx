@@ -23,7 +23,6 @@ function LoginForm(props) {
   const googleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      console.log(result.user);
 
       navigate("/");
     } catch (error) {

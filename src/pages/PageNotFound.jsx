@@ -4,7 +4,7 @@ import notFound from "../assets/not_found.svg";
 function PageNotFound() {
   return (
     <div className="text-center d-flex flex-column justify-content-center align-item-center h-100">
-      <div className="image-404">
+      <div className="image-illustration">
         <img src={notFound} alt="" />
       </div>
       <p className="pt-4">Sorry, the page you are looking doesn't exist.</p>

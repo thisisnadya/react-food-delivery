@@ -1,5 +1,4 @@
 import { ActionTypes } from "../actions/types";
-import AlertDialog from "../../components/AlertDialog";
 
 const cartInitialState = {
   cart: [],
@@ -53,7 +52,7 @@ export const cartReducer = (state = cartInitialState, action) => {
             : state.cart.map((item) =>
                 item.id === action.payload.id
                   ? item.qty === 1
-                    ? state.cart.filter((menu) => menu.id !== action.payload.id)
+                    ? state.cart.filter((i) => item.id !== action.payload.id)
                     : {
                         ...item,
                         qty: item.qty - 1,

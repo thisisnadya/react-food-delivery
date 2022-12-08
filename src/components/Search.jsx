@@ -7,10 +7,6 @@ function Search() {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
-
   const submitHandler = (e) => {
     e.preventDefault();
 

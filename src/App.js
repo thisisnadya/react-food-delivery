@@ -9,6 +9,9 @@ import Category from "./pages/Category";
 import Detail from "./pages/Detail";
 import PageNotFound from "./pages/PageNotFound";
 import Searched from "./pages/Searched";
+import Wallet from "./pages/Wallet";
+import Summarize from "./pages/Summarize";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/wallet" element={<Wallet />} />
+        <Route path="/summarize" element={<Summarize />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/type/:type" element={<Category />} />
