@@ -32,5 +32,6 @@
 :white_check_mark: page under construction
 <br>
 :exclamation: user setting
-
+<br>
+:exclamation: saving to local storage
 
