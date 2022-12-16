@@ -25,6 +25,13 @@ export const handleFavourite = (data) => {
   };
 };
 
+export const removeFromCart = (data) => {
+  return {
+    type: ActionTypes.REMOVE_FROM_CART,
+    payload: data,
+  };
+};
+
 // register action
 
 export const registerAction = (payload) => (dispatch) => {

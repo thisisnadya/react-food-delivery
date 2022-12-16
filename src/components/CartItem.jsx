@@ -1,7 +1,7 @@
-import { AddRounded, RemoveRounded } from "@mui/icons-material";
+import { AddRounded, RemoveRounded, Delete } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { adjustQty } from "../redux/actions/actions";
+import { adjustQty, removeFromCart } from "../redux/actions/actions";
 
 function CartItem({ name, price, imgSrc, itemId }) {
   const dispatch = useDispatch();
@@ -27,14 +27,22 @@ function CartItem({ name, price, imgSrc, itemId }) {
         <div className="itemQuantity">
           <span>x {qty}</span>
           <div className="quantity">
-            <RemoveRounded
-              className="itemRemove"
-              onClick={() => dispatch(adjustQty(itemId, "DECREMENT"))}
-            />
-            <AddRounded
-              className="itemAdd"
-              onClick={() => dispatch(adjustQty(itemId, "INCREMENT"))}
-            />
+            <button className="btn" disabled={qty <= 1 ? true : false}>
+              <RemoveRounded
+                disabled="true"
+                className="itemRemove"
+                onClick={() => dispatch(adjustQty(itemId, "DECREMENT"))}
+              />
+            </button>
+            <button className="btn">
+              <AddRounded
+                className="itemAdd"
+                onClick={() => dispatch(adjustQty(itemId, "INCREMENT"))}
+              />
+            </button>
+            <button className="btn">
+              <Delete onClick={() => dispatch(removeFromCart(itemId))} />
+            </button>
           </div>
         </div>
       </div>

@@ -51,15 +51,19 @@ export const cartReducer = (state = cartInitialState, action) => {
               )
             : state.cart.map((item) =>
                 item.id === action.payload.id
-                  ? item.qty === 1
-                    ? state.cart.filter((i) => item.id !== action.payload.id)
-                    : {
-                        ...item,
-                        qty: item.qty - 1,
-                        totalPrice: parseFloat((item.qty - 1) * item.price),
-                      }
+                  ? {
+                      ...item,
+                      qty: item.qty - 1,
+                      totalPrice: parseFloat((item.qty - 1) * item.price),
+                    }
                   : item
               ),
+      };
+    case ActionTypes.REMOVE_FROM_CART:
+      console.log(state.cart.filter((item) => item.id !== action.payload));
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
       };
     default:
       return state;
