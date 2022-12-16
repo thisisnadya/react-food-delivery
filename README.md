@@ -8,7 +8,7 @@
 <br>
 :exclamation: fix cart reducer
 <br> 
-- remove from cart
+- remove from cart :white_check_mark:
 - pricing :white_check_mark:
 - cart count :white_check_mark:
 - total price :white_check_mark:
