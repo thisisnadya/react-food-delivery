@@ -45,10 +45,12 @@ function Header() {
         alt=""
       />
       <Search />
-      <div className="shoppingCart">
-        <ShoppingCartRounded className="cart" />
-        <div className="cart_content">{cartCounts}</div>
-      </div>
+      {user && (
+        <div className="shoppingCart">
+          <ShoppingCartRounded className="cart" />
+          <div className="cart_content">{cartCounts}</div>
+        </div>
+      )}
 
       {user ? (
         <div className="profileContainer">

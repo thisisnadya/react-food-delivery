@@ -39,6 +39,10 @@ function Login() {
       <Header />
       <div className="new-section d-flex justify-content-center align-items-center flex-column">
         <h1>Login</h1>
+        <p className="bg-warning p-2 text-dark bg-opacity-25 rounded">
+          Please use google login, the sign up feature is still under
+          development
+        </p>
         <LoginForm loginState={loginData} />
       </div>
     </div>

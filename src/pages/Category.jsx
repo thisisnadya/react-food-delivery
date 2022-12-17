@@ -60,21 +60,20 @@ function Home() {
               ))}
             </div>
             <div className="dishItemContainer">
-              {isLoading ? (
-                <Loading type="puff" fill="#fa901c" />
+              {!isLoading && categoryMenus ? (
+                categoryMenus.map((item) => (
+                  <ItemCard
+                    key={item.id}
+                    imgSrc={item.image}
+                    name={item.title}
+                    ratings={item.aggregateLikes}
+                    price={item.pricePerServing}
+                    itemId={item.id}
+                  />
+                ))
               ) : (
-                <>
-                  {categoryMenus.map((item) => (
-                    <ItemCard
-                      key={item.id}
-                      imgSrc={item.image}
-                      name={item.title}
-                      ratings={item.aggregateLikes}
-                      price={item.pricePerServing}
-                      itemId={item.id}
-                    />
-                  ))}
-                </>
+                <h1>Loading...</h1>
+                // <Loading type="puff" fill="#fa901c" />
               )}
             </div>
           </div>

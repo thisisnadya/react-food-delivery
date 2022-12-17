@@ -60,7 +60,6 @@ export const cartReducer = (state = cartInitialState, action) => {
               ),
       };
     case ActionTypes.REMOVE_FROM_CART:
-      console.log(state.cart.filter((item) => item.id !== action.payload));
       return {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),

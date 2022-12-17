@@ -14,10 +14,8 @@ import RightMenu from "../components/RightMenu";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
-  const cartItems = useSelector((state) => state.carts.cart);
   const [homeMenus, setHomeMenus] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  // const [grandTotal, setGrandTotal] = useState(0);
 
   const getHomeMenus = () => {
     setIsLoading(true);
@@ -38,19 +36,9 @@ function Home() {
     setIsLoading(false);
   };
 
-  // const getGrandTotal = () => {
-  //   let total = 0;
-  //   cartItems.forEach((item) => (total += item.totalPrice));
-  //   setGrandTotal(total.toFixed(2));
-  // };
-
   useEffect(() => {
     getHomeMenus();
   }, []);
-
-  // useEffect(() => {
-  //   getGrandTotal();
-  // }, [cartItems]);
 
   return (
     <div>
@@ -78,21 +66,19 @@ function Home() {
               ))}
             </div>
             <div className="dishItemContainer">
-              {isLoading ? (
-                <Loading type="puff" fill="#fa901c" />
+              {!isLoading && homeMenus ? (
+                homeMenus.map((item) => (
+                  <ItemCard
+                    key={item.id}
+                    imgSrc={item.image}
+                    name={item.title}
+                    ratings={item.aggregateLikes}
+                    price={item.pricePerServing}
+                    itemId={item.id}
+                  />
+                ))
               ) : (
-                <>
-                  {homeMenus.map((item) => (
-                    <ItemCard
-                      key={item.id}
-                      imgSrc={item.image}
-                      name={item.title}
-                      ratings={item.aggregateLikes}
-                      price={item.pricePerServing}
-                      itemId={item.id}
-                    />
-                  ))}
-                </>
+                <Loading type="puff" fill="#fa901c" />
               )}
             </div>
           </div>

@@ -3,18 +3,15 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { adjustQty, removeFromCart } from "../redux/actions/actions";
 
+
 function CartItem({ name, price, imgSrc, itemId }) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.carts.cart);
   const item = cart.find((item) => item.id === itemId);
   const [qty, setQty] = useState(item.qty);
-  // const [itemPrice, setItemPrice] = useState(
-  //   (parseInt(qty) * parseFloat(price)).toFixed(2)
-  // );
 
   useEffect(() => {
     setQty(item.qty);
-    // setItemPrice((parseInt(qty) * parseFloat(item.price)).toFixed(2));
   }, [qty, item.qty]);
 
   return (
