@@ -9,13 +9,13 @@
 - Sign in method still only works using Google
 
 # Tech:
-- HTML
-- CSS
+- HTML & CSS
 - Bootstrap 5
 - ReactJs
 - Redux
 - Firebase
 - Material UI 
+- Framer Motion
 
 
 
