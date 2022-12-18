@@ -1,4 +1,4 @@
-## Food Delivery App using React, Redux, and Firebase
+# Food Delivery App using React, Redux, and Firebase
 
 :construction: This app is still under development. :construction:
 
@@ -8,7 +8,7 @@
 
 - Sign in method still only works using Google
 
-## Tech:
+# Tech:
 - HTML
 - CSS
 - Bootstrap 5
