@@ -15,7 +15,7 @@
 <br>
 :exclamation: add infinite scroll
 <br>
-:exclamation: protected route
+:white_check_mark: protected route
 <br>
 :white_check_mark: add category /type pages
 <br>
@@ -33,5 +33,5 @@
 <br>
 :exclamation: user setting
 <br>
-:exclamation: saving to local storage
+:white_check_mark: saving to local storage
 
