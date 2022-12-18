@@ -17,11 +17,13 @@ import Loading from "react-loading-components";
 import RightMenu from "../components/RightMenu";
 
 function Detail() {
+  const params = useParams();
   const cartItems = useSelector((state) => state.carts.cart);
+  const favorites = useSelector((state) => state.favorites);
+  const isFavorite = favorites.find((item) => item.id == params.id);
   const [detail, setDetail] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const params = useParams();
 
   useEffect(() => {
     getDetail(params.id);
@@ -90,7 +92,9 @@ function Detail() {
                       Add To Cart <AddRounded />
                     </button>
                     <button
-                      className="btn btn-custom2 ms-4  d-flex justify-content-center align-items-center"
+                      className={`btn btn-custom2 ms-4  d-flex justify-content-center align-items-center ${
+                        isFavorite ? "active" : ""
+                      }`}
                       onClick={() =>
                         dispatch(
                           handleFavourite({

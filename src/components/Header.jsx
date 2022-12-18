@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Logout from "./Logout";
+import { Link, useNavigate } from "react-router-dom";
+// import Logout from "./Logout";
 import Search from "./Search";
 import { logoutAction } from "../redux/actions/actions";
 import { useDispatch, useSelector, useStore } from "react-redux";
@@ -11,6 +11,7 @@ import { auth } from "../utils/firebase";
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const store = useStore();
   // const currentUser = store.getState().user.user;
   const cart = useSelector((state) => state.carts.cart);
@@ -29,6 +30,12 @@ function Header() {
 
   const logout = () => {
     dispatch(logoutAction());
+  };
+
+  const handleLogout = () => {
+    auth.signOut();
+
+    navigate("/login");
   };
 
   const getCartCounts = () => {
@@ -66,7 +73,7 @@ function Header() {
           {/* <div className="btn-logout ms-2">
             <Logout onLogout={logout} />
           </div> */}
-          <button className="btn btn-custom" onClick={() => auth.signOut()}>
+          <button className="btn btn-custom" onClick={() => handleLogout()}>
             Sign Out
           </button>
         </div>

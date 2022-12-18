@@ -11,6 +11,7 @@ import Loading from "react-loading-components";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import RightMenu from "../components/RightMenu";
+import { motion } from "framer-motion";
 
 function Home() {
   const currentUser = useSelector((state) => state.user.user);
@@ -41,7 +42,11 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <Header />
       <main>
         <div className="mainContainer">
@@ -86,7 +91,7 @@ function Home() {
         <RightMenu />
       </main>
       <BottomMenu />
-    </div>
+    </motion.div>
   );
 }
 
