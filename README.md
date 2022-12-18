@@ -1,37 +1,21 @@
-## Todo:
+## Food Delivery App using React, Redux, and Firebase
 
-:white_check_mark: ui (Design from <a href='https://www.youtube.com/watch?v=CjGEuLgt4nw'>Vetrieval Ravi</a>)
-<br>
-:white_check_mark: fetch <a href='https://spoonacular.com/food-api/docs'>API</a>
-<br>
-:white_check_mark: login & logout (+ sign in google works)
-<br>
-:exclamation: fix cart reducer
-<br> 
-- remove from cart :white_check_mark:
-- pricing :white_check_mark:
-- cart count :white_check_mark:
-- total price :white_check_mark:
-<br>
-:exclamation: add infinite scroll
-<br>
-:white_check_mark: protected route
-<br>
-:white_check_mark: add category /type pages
-<br>
-:white_check_mark: search functionality
-<br>
-:white_check_mark: 404 page
-<br>
-:white_check_mark: detail page
-<br>
-:white_check_mark: favorite page
-<br>
-:white_check_mark: loading component
-<br>
-:white_check_mark: page under construction
-<br>
-:exclamation: user setting
-<br>
-:white_check_mark: saving to local storage
+:construction: This app is still under development. :construction:
+
+- UI style, design and some images from <a href='https://www.youtube.com/watch?v=CjGEuLgt4nw'>Vetrieval Ravi</a>
+
+- This app is using food API from <a href='https://spoonacular.com/food-api/docs'>Spoonacular</a> to fetch menus and details
+
+- Sign in method still only works using Google
+
+## Tech:
+- HTML
+- CSS
+- Bootstrap 5
+- ReactJs
+- Redux
+- Firebase
+- Material UI 
+
+
 
